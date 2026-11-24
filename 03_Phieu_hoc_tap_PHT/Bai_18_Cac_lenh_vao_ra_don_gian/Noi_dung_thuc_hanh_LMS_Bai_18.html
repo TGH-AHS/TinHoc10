@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Liệu Thực Hành Python Online - Bài 18: Các Lệnh Vào Ra Đơn Giản | Asian School</title>
+  <style>
+    :root {
+      --primary: #0267B1;
+      --primary-dark: #014c83;
+      --secondary: #0f172a;
+      --accent: #f59e0b;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --code-bg: #1e1e1e;
+      --terminal-bg: #0b1120;
+      --border: #e2e8f0;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* BANNER HEADER */
+    .banner {
+      background: linear-gradient(135deg, #0267B1 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 28px 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::after {
+      content: "⌨️";
+      position: absolute;
+      right: 20px;
+      bottom: -15px;
+      font-size: 105px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .banner h3 {
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .banner h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .banner p {
+      font-size: 14.5px;
+      color: #e2e8f0;
+      max-width: 750px;
+    }
+
+    /* ACTION BAR */
+    .action-bar {
+      background-color: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .action-bar-text {
+      font-size: 14px;
+      color: #92400e;
+      font-weight: 500;
+    }
+
+    .action-bar-text strong {
+      color: #78350f;
+    }
+
+    .btn-ide {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--primary);
+      color: #ffffff !important;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(2, 103, 177, 0.3);
+    }
+
+    .btn-ide:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* SECTION HEADING */
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin: 32px 0 16px 0;
+      padding-left: 12px;
+      border-left: 4px solid var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* CARD VÍ DỤ */
+    .example-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .example-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .card-title-group h2 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .card-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    /* VS CODE EDITOR WINDOW */
+    .vscode-window {
+      background-color: var(--code-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .vscode-header {
+      background-color: #252526;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      border-bottom: 1px solid #333333;
+    }
+
+    .vscode-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background-color: #ff5f56; }
+    .dot-yellow { background-color: #ffbd2e; }
+    .dot-green { background-color: #27c93f; }
+
+    .vscode-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #1e1e1e;
+      color: #cccccc;
+      font-size: 12.5px;
+      padding: 4px 14px;
+      border-top: 1.5px solid var(--primary);
+      border-radius: 4px 4px 0 0;
+      font-family: Consolas, 'Courier New', monospace;
+    }
+
+    .vscode-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      background: #1e293b;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+
+    .vscode-body {
+      padding: 14px 16px;
+      font-family: 'Consolas', 'Fira Code', 'Monaco', monospace;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #d4d4d4;
+      overflow-x: auto;
+    }
+
+    .code-line {
+      display: flex;
+      margin: 2px 0;
+    }
+
+    .line-num {
+      width: 28px;
+      color: #858585;
+      text-align: right;
+      margin-right: 16px;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .line-content {
+      white-space: pre;
+    }
+
+    /* SYNTAX COLORS */
+    .c-keyword { color: #c586c0; font-weight: bold; }
+    .c-func { color: #dcdcaa; font-weight: bold; }
+    .c-str { color: #ce9178; }
+    .c-num { color: #b5cea8; }
+    .c-comment { color: #6a9955; font-style: italic; }
+    .c-op { color: #ffd700; }
+    .c-var { color: #9cdcfe; }
+
+    /* TERMINAL OUTPUT */
+    .terminal-box {
+      background-color: var(--terminal-bg);
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+    }
+
+    .terminal-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .terminal-content {
+      color: #4ade80;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .terminal-input-prompt {
+      color: #38bdf8;
+    }
+
+    .terminal-user-input {
+      color: #facc15;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    /* NOTE CALLOUT */
+    .note-box {
+      background-color: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #334155;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .note-box strong {
+      color: var(--primary);
+    }
+
+    /* TAB NAVIGATION */
+    .tab-nav-wrapper {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      padding: 12px 20px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      top: 2px;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      background: #ffffff;
+      border-color: var(--primary);
+      border-bottom: 3px solid #ffffff;
+      box-shadow: 0 -4px 6px -1px rgba(2, 103, 177, 0.08);
+      top: 2px;
+    }
+
+    .tab-badge {
+      background: #e0f2fe;
+      color: var(--primary);
+      font-size: 11.5px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 600;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* QUIZ SECTION STYLES */
+    .quiz-control-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .student-info-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 680px) {
+      .student-info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary);
+      margin-bottom: 6px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--text);
+      background-color: #f8fafc;
+      transition: all 0.2s ease;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(2, 103, 177, 0.15);
+    }
+
+    .quiz-actions-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-export {
+      background-color: #10b981;
+      color: #ffffff;
+    }
+
+    .btn-export:hover {
+      background-color: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background-color: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background-color: #e2e8f0;
+    }
+
+    /* RESULT BOX */
+    .result-box {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .result-score-tag {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .result-details h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 2px;
+    }
+
+    .result-details p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    /* QUIZ QUESTION CARDS */
+    .quiz-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.2s ease;
+    }
+
+    .quiz-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .quiz-question-header {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .q-badge {
+      background: #e2e8f0;
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .q-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--secondary);
+      line-height: 1.5;
+    }
+
+    .q-text code {
+      font-family: Consolas, 'Courier New', monospace;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13.5px;
+      color: #b91c1c;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background-color: #f8fafc;
+      position: relative;
+    }
+
+    .quiz-option:hover {
+      background-color: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .quiz-option input[type="radio"] {
+      display: none;
+    }
+
+    .opt-letter {
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: #e2e8f0;
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 13px;
+      margin-right: 12px;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .opt-text {
+      font-size: 14px;
+      color: var(--text);
+      flex-grow: 1;
+    }
+
+    .opt-text code {
+      font-family: Consolas, monospace;
+      background: #ffffff;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 13px;
+    }
+
+    /* SELECTED STATE */
+    .quiz-option.selected {
+      background-color: #f0f7ff;
+      border-color: var(--primary);
+    }
+
+    .quiz-option.selected .opt-letter {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* CORRECT / WRONG STATES AFTER SUBMISSION */
+    .quiz-option.correct-answer {
+      background-color: #f0fdf4 !important;
+      border-color: #22c55e !important;
+    }
+
+    .quiz-option.correct-answer .opt-letter {
+      background-color: #16a34a !important;
+      color: #ffffff !important;
+    }
+
+    .quiz-option.wrong-answer {
+      background-color: #fef2f2 !important;
+      border-color: #ef4444 !important;
+    }
+
+    .quiz-option.wrong-answer .opt-letter {
+      background-color: #dc2626 !important;
+      color: #ffffff !important;
+    }
+
+    .opt-status-icon {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+
+    /* FEEDBACK ACCORDION */
+    .quiz-feedback {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 6px 6px 0;
+      font-size: 13.5px;
+    }
+
+    .feedback-answer {
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .feedback-explain {
+      color: var(--text-muted);
+    }
+
+    /* PRINT ONLY HEADER (HIDDEN ON SCREEN) */
+    .print-only-header {
+      display: none;
+    }
+
+    /* PRINT MEDIA RULES (FOR EXPORTING PDF) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 15mm;
+      }
+
+      * {
+        -webkit-user-select: auto !important;
+        -moz-user-select: auto !important;
+        -ms-user-select: auto !important;
+        user-select: auto !important;
+      }
+
+      body {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        font-size: 11.5pt !important;
+        line-height: 1.4 !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .banner,
+      .tab-nav-wrapper,
+      #tab-content-practice,
+      .quiz-control-card,
+      .footer,
+      #toast,
+      .no-print {
+        display: none !important;
+      }
+
+      #tab-content-quiz {
+        display: block !important;
+      }
+
+      .print-only-header {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #0267B1;
+      }
+
+      .print-school-title {
+        font-size: 12pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #475569;
+        margin-bottom: 4px;
+      }
+
+      .print-exam-title {
+        font-size: 15pt;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #0267B1;
+        margin-bottom: 4px;
+      }
+
+      .print-sub-title {
+        font-size: 10.5pt;
+        font-style: italic;
+        color: #64748b;
+        margin-bottom: 12px;
+      }
+
+      .print-student-meta {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.2fr;
+        gap: 8px;
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 10pt;
+        text-align: left;
+      }
+
+      .quiz-card {
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        border-radius: 6px !important;
+        padding: 10px 14px !important;
+        margin-bottom: 10px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        background: #ffffff !important;
+      }
+
+      .quiz-question-header {
+        margin-bottom: 6px !important;
+      }
+
+      .q-badge {
+        background: #0267B1 !important;
+        color: #ffffff !important;
+        font-size: 9.5pt !important;
+        padding: 2px 6px !important;
+      }
+
+      .q-text {
+        font-size: 10.5pt !important;
+      }
+
+      .quiz-options {
+        gap: 4px !important;
+      }
+
+      .quiz-option {
+        padding: 5px 10px !important;
+        border: 1px solid #e2e8f0 !important;
+        background: #ffffff !important;
+        font-size: 10pt !important;
+      }
+
+      .quiz-option.selected {
+        background-color: #f0f7ff !important;
+        border-color: #0267B1 !important;
+        font-weight: bold !important;
+      }
+
+      .quiz-option.selected .opt-letter {
+        background-color: #0267B1 !important;
+        color: #ffffff !important;
+      }
+
+      .opt-letter {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 9.5pt !important;
+        margin-right: 8px !important;
+      }
+
+      .quiz-feedback {
+        margin-top: 6px !important;
+        padding: 6px 10px !important;
+        font-size: 9.5pt !important;
+        border-left: 3px solid #0267B1 !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- BANNER HEADER -->
+  <div class="banner">
+    <h3>Trường Quốc Tế Á Châu — Tin Học 10</h3>
+    <h1>HỌC LIỆU THỰC HÀNH MÃ NGUỒN: BÀI 18 — CÁC LỆNH VÀO RA ĐƠN GIẢN</h1>
+    <p>Tổng hợp toàn bộ các ví dụ mẫu, câu hỏi khám phá, bài thực hành và vận dụng trong Sách giáo khoa (Kết nối tri thức) — Đã chuyển hóa sang định dạng tệp mã nguồn chuẩn để học sinh tự gõ và thực hành trực tiếp trên IDE trực tuyến <strong>pythononline.net</strong>.</p>
+  </div>
+
+
+  <!-- TAB NAVIGATION BAR -->
+  <div class="tab-nav-wrapper no-print">
+    <button class="tab-btn active" id="tab-btn-practice" onclick="switchMainTab('practice')">
+      <span>💻</span> 1. THỰC HÀNH LẬP TRÌNH (14 BÀI TẬP SGK)
+    </button>
+    <button class="tab-btn" id="tab-btn-quiz" onclick="switchMainTab('quiz')">
+      <span>📝</span> 2. TRẮC NGHIỆM ÔN TẬP BÀI 16 - 17 - 18 &amp; XUẤT PDF
+      <span class="tab-badge">20 câu</span>
+    </button>
+  </div>
+
+  <!-- TAB 1: THỰC HÀNH LẬP TRÌNH -->
+  <div id="tab-content-practice" class="tab-pane active">
+
+  <!-- ACTION BAR HƯỚNG DẪN -->
+  <div class="action-bar">
+    <div class="action-bar-text">
+      ✍️ <strong>Yêu cầu thực hành:</strong> Học sinh tự gõ lại từng dòng lệnh vào khung soạn thảo của <a href="https://pythononline.net" target="_blank" style="color: #0267B1; font-weight: bold; text-decoration: underline;">pythononline.net ↗</a> để rèn luyện kỹ năng lập trình và ghi nhớ cú pháp các lệnh vào/ra, sau đó bấm nút <span style="background: #16a34a; color: #fff; padding: 1px 7px; border-radius: 3px; font-weight: bold;">Run</span> để kiểm tra kết quả.
+    </div>
+    <a href="https://pythononline.net" target="_blank" class="btn-ide">
+      🌐 Mở IDE pythononline.net ↗
+    </a>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 1: CÁC LỆNH VÀO RA ĐƠN GIẢN (LỆNH input() VÀ print()) -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 1: Lệnh Vào / Ra đơn giản (SGK Trang 97)</div>
+
+  <!-- VÍ DỤ 1: HOẠT ĐỘNG 1 - TÌM HIỂU LỆNH input() -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Hoạt động 1 - SGK Trang 97</span>
+        <h2>Ví dụ 1: Tìm hiểu chức năng của lệnh input()</h2>
+      </div>
+    </div>
+    <div class="card-desc">Lệnh <code>input()</code> dừng chương trình để người dùng nhập dữ liệu từ bàn phím. Kết quả trả về của <code>input()</code> <strong>luôn là một xâu ký tự (str)</strong>, ngay cả khi người dùng gõ vào các chữ số.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_1_input.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Nhập một giá trị từ bàn phím</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">du_lieu</span> <span class="c-op">=</span> <span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập một số: "</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Xuất giá trị và kiểm tra kiểu dữ liệu thực tế</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Giá trị vừa nhập là:"</span><span class="c-op">,</span> <span class="c-var">du_lieu</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Kiểu dữ liệu của biến du_lieu là:"</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-var">du_lieu</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập một số: </span><span class="terminal-user-input">12</span>
+Giá trị vừa nhập là: 12
+Kiểu dữ liệu của biến du_lieu là: &lt;class 'str'&gt;</div>
+    </div>
+    <div class="note-box">💡 <strong>Điểm cốt lõi cần nhớ:</strong> Dù em nhập số <code>12</code>, Python vẫn hiểu đó là xâu ký tự <code>'12'</code> (chưa thể dùng để cộng, trừ, nhân, chia số học được).</div>
+  </div>
+
+  <!-- VÍ DỤ 2: NHẬP VÀ XUẤT XÂU KÝ TỰ HỌ TÊN -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 1 - SGK Trang 97</span>
+        <h2>Ví dụ 2: Nhập xâu ký tự và xuất lời chào tương tác</h2>
+      </div>
+    </div>
+    <div class="card-desc">Cú pháp nhập xâu: <code>&lt;biến&gt; = input(&lt;Dòng thông báo&gt;)</code> và xuất ra màn hình kết hợp với chuỗi lời chào.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_2_name.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Cần nhập một xâu kí tự thì sử dụng lệnh input() trực tiếp</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">name</span> <span class="c-op">=</span> <span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập họ tên em: "</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># In lời chào kèm họ tên vừa nhập ra màn hình</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Xin chào"</span><span class="c-op">,</span> <span class="c-var">name</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập họ tên em: </span><span class="terminal-user-input">Trần Gia Huy</span>
+Xin chào Trần Gia Huy</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 2: CHUYỂN ĐỔI KIỂU DỮ LIỆU CƠ BẢN CỦA PYTHON -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 2: Nhận biết &amp; Phân biệt Kiểu dữ liệu (SGK Trang 98)</div>
+
+  <!-- VÍ DỤ 3: HÀM type() -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Hoạt động 2 - SGK Trang 98</span>
+        <h2>Ví dụ 3: Sử dụng hàm type() để nhận biết kiểu dữ liệu của biến</h2>
+      </div>
+    </div>
+    <div class="card-desc">Hàm <code>type()</code> giúp xác định chính xác kiểu dữ liệu của một biến hoặc một giá trị: số nguyên (<code>int</code>), số thực (<code>float</code>), xâu ký tự (<code>str</code>).</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_3_type.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Gán n = 10, x = 1.8, s = "One" đồng thời</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">n</span><span class="c-op">,</span> <span class="c-var">x</span><span class="c-op">,</span> <span class="c-var">s</span> <span class="c-op">=</span> <span class="c-num">10</span><span class="c-op">,</span> <span class="c-num">1.8</span><span class="c-op">,</span> <span class="c-str">"One"</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến n ="</span><span class="c-op">,</span> <span class="c-var">n</span><span class="c-op">,</span> <span class="c-str">"-&gt; Kiểu dữ liệu là:"</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-var">n</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến x ="</span><span class="c-op">,</span> <span class="c-var">x</span><span class="c-op">,</span> <span class="c-str">"-&gt; Kiểu dữ liệu là:"</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-var">x</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến s ="</span><span class="c-op">,</span> <span class="c-var">s</span><span class="c-op">,</span> <span class="c-str">"-&gt; Kiểu dữ liệu là:"</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-var">s</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Biến n = 10 -&gt; Kiểu dữ liệu là: &lt;class 'int'&gt;
+Biến x = 1.8 -&gt; Kiểu dữ liệu là: &lt;class 'float'&gt;
+Biến s = One -&gt; Kiểu dữ liệu là: &lt;class 'str'&gt;</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 4: KIỂU DỮ LIỆU LÔGIC BOOL -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 98</span>
+        <h2>Ví dụ 4: Kiểu dữ liệu lôgic (bool) trong Python</h2>
+      </div>
+    </div>
+    <div class="card-desc">Kiểu dữ liệu lôgic <code>bool</code> chỉ có hai giá trị duy nhất: <code>True</code> (đúng) và <code>False</code> (sai), là kết quả của các phép so sánh (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code>).</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_4_bool.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Kết quả của phép so sánh</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Phép so sánh 3 &gt; 2 cho kết quả:"</span><span class="c-op">,</span> <span class="c-num">3</span> <span class="c-op">&gt;</span> <span class="c-num">2</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Phép so sánh 5 &lt; 0 cho kết quả:"</span><span class="c-op">,</span> <span class="c-num">5</span> <span class="c-op">&lt;</span> <span class="c-num">0</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># Gán kết quả so sánh vào một biến lôgic</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-var">b</span> <span class="c-op">=</span> <span class="c-num">10</span> <span class="c-op">&gt;</span> <span class="c-num">3</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến b có giá trị:"</span><span class="c-op">,</span> <span class="c-var">b</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Kiểu dữ liệu của biến b là:"</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-var">b</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Phép so sánh 3 &gt; 2 cho kết quả: True
+Phép so sánh 5 &lt; 0 cho kết quả: False
+Biến b có giá trị: True
+Kiểu dữ liệu của biến b là: &lt;class 'bool'&gt;</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 5: CỦNG CỐ XÁC ĐỊNH KIỂU BIỂU THỨC -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Câu hỏi mục 2 - SGK Trang 98</span>
+        <h2>Ví dụ 5: Xác định kiểu và giá trị của các biểu thức cơ bản</h2>
+      </div>
+    </div>
+    <div class="card-desc">Thực hành in giá trị và kiểu dữ liệu (hàm <code>type()</code>) của 4 biểu thức trong SGK.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_5_bieu_thuc.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># a) Biểu thức trong dấu nháy kép là xâu kí tự</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Giá trị a:'</span><span class="c-op">,</span> <span class="c-str">"15 + 20 - 7"</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Kiểu a:'</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-str">"15 + 20 - 7"</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># b) Phép so sánh lớn hơn (&gt;) cho kết quả lôgic bool</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Giá trị b:'</span><span class="c-op">,</span> <span class="c-num">32</span> <span class="c-op">&gt;</span> <span class="c-num">45</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Kiểu b:'</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-num">32</span> <span class="c-op">&gt;</span> <span class="c-num">45</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-comment"># c) Phép so sánh khác (!=): 13 != 13 là False</span></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Giá trị c:'</span><span class="c-op">,</span> <span class="c-num">13</span> <span class="c-op">!=</span> <span class="c-num">8</span> <span class="c-op">+</span> <span class="c-num">5</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Kiểu c:'</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-num">13</span> <span class="c-op">!=</span> <span class="c-num">8</span> <span class="c-op">+</span> <span class="c-num">5</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-content"><span class="c-comment"># d) Phép so sánh bằng (==): 1 == 2 là False</span></span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Giá trị d:'</span><span class="c-op">,</span> <span class="c-num">1</span> <span class="c-op">==</span> <span class="c-num">2</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">'Kiểu d:'</span><span class="c-op">,</span> <span class="c-func">type</span><span class="c-op">(</span><span class="c-num">1</span> <span class="c-op">==</span> <span class="c-num">2</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Giá trị a: 15 + 20 - 7
+Kiểu a: &lt;class 'str'&gt;
+Giá trị b: False
+Kiểu b: &lt;class 'bool'&gt;
+Giá trị c: False
+Kiểu c: &lt;class 'bool'&gt;
+Giá trị d: False
+Kiểu d: &lt;class 'bool'&gt;</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 6: HÀM int() -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 99</span>
+        <h2>Ví dụ 6: Chuyển đổi sang kiểu số nguyên bằng hàm int()</h2>
+      </div>
+    </div>
+    <div class="card-desc">Lệnh <code>int()</code> chuyển đổi số thực (lấy phần nguyên) hoặc xâu chứa số nguyên thành giá trị số nguyên. <strong>Lưu ý:</strong> <code>int()</code> không thể chuyển xâu chứa số thập phân như <code>"10.35"</code> hay xâu phép tính <code>"12+45"</code>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_6_int.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># 1. Chuyển đổi số thực sang số nguyên (bỏ phần thập phân): int(12.6) -&gt; 12</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"int(12.6) ="</span><span class="c-op">,</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-num">12.6</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># 2. Chuyển đổi xâu chứa số nguyên thành số nguyên: int("123") -&gt; 123</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"int(\"123\") ="</span><span class="c-op">,</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-str">"123"</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># Thử nghiệm báo lỗi: Bỏ dấu # ở dòng dưới để quan sát lỗi ValueError:</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-comment"># print(int("10.35")) # Lỗi: int() không chuyển đổi được xâu chứa số thực</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-comment"># print(int("12+45")) # Lỗi: int() không thực hiện tính toán biểu thức trong xâu</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">int(12.6) = 12
+int("123") = 123</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 7: HÀM float() -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 99</span>
+        <h2>Ví dụ 7: Chuyển đổi sang kiểu số thực bằng hàm float()</h2>
+      </div>
+    </div>
+    <div class="card-desc">Lệnh <code>float()</code> chuyển đổi một số nguyên hoặc xâu ký tự chứa số thành số thực (có phần thập phân <code>.0</code>).</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_7_float.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># 1. Chuyển đổi số nguyên sang số thực</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"float(8) ="</span><span class="c-op">,</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-num">8</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># 2. Chuyển đổi xâu số thập phân sang số thực</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"float(\"10.23\") ="</span><span class="c-op">,</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-str">"10.23"</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">float(8) = 8.0
+float("10.23") = 10.23</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 8: HÀM str() -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 99</span>
+        <h2>Ví dụ 8: Chuyển đổi mọi kiểu dữ liệu sang xâu ký tự bằng hàm str()</h2>
+      </div>
+    </div>
+    <div class="card-desc">Lệnh <code>str()</code> dùng để chuyển đổi số nguyên, số thực hoặc giá trị lôgic thành xâu ký tự để thuận tiện cho việc ghép chuỗi văn bản.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_8_str.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># 1. Chuyển đổi kết quả phép tính số học thành xâu</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"str(12 + 34) ="</span><span class="c-op">,</span> <span class="c-func">str</span><span class="c-op">(</span><span class="c-num">12</span> <span class="c-op">+</span> <span class="c-num">34</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># 2. Chuyển đổi số thực thành xâu</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"str(12.567) ="</span><span class="c-op">,</span> <span class="c-func">str</span><span class="c-op">(</span><span class="c-num">12.567</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># 3. Chuyển đổi giá trị lôgic False thành xâu "False"</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"str(2 &gt; 3)   ="</span><span class="c-op">,</span> <span class="c-func">str</span><span class="c-op">(</span><span class="c-num">2</span> <span class="c-op">&gt;</span> <span class="c-num">3</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">str(12 + 34) = 46
+str(12.567) = 12.567
+str(2 &gt; 3)   = False</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 4: NHẬP SỐ TỪ BÀN PHÍM BẰNG CÁCH ÉP KIỂU -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 4: Nhập dữ liệu số nguyên &amp; số thực từ bàn phím (SGK Trang 100)</div>
+
+  <!-- VÍ DỤ 9: ÉP KIỂU KHI NHẬP -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Hoạt động 4 - SGK Trang 100</span>
+        <h2>Ví dụ 9: Kỹ thuật lồng hàm int(input()) và float(input()) để nhập số</h2>
+      </div>
+    </div>
+    <div class="card-desc">Để biến nhận giá trị số (phục vụ tính toán), ta phải lồng hàm ép kiểu <code>int()</code> hoặc <code>float()</code> bên ngoài lệnh <code>input()</code>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_9_nhap_so.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Nhập số tự nhiên n (ép sang kiểu int)</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">n</span> <span class="c-op">=</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập số tự nhiên: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Nhập số thực x (ép sang kiểu float)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-var">x</span> <span class="c-op">=</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập số thực x: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># Thực hiện phép tính cộng giữa n và x</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Tổng n + x ="</span><span class="c-op">,</span> <span class="c-var">n</span> <span class="c-op">+</span> <span class="c-var">x</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập số tự nhiên: </span><span class="terminal-user-input">13</span>
+<span class="terminal-input-prompt">Nhập số thực x: </span><span class="terminal-user-input">4.5</span>
+Tổng n + x = 17.5</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 5: BÀI TẬP THỰC HÀNH TRỌNG TÂM SGK -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 5: Bài tập Thực hành SGK (Trang 100)</div>
+
+  <!-- VÍ DỤ 10: THỰC HÀNH NHIỆM VỤ 1 -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Thực hành Nhiệm vụ 1 - SGK Trang 100</span>
+        <h2>Ví dụ 10: Chương trình nhập lần lượt ba số tự nhiên m, n, p và tính tổng</h2>
+      </div>
+    </div>
+    <div class="card-desc">Viết chương trình nhập vào 3 số nguyên và tính tổng <code>m + n + p</code> hiển thị ra màn hình.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 thuc_hanh_tong_3_so.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Nhập lần lượt ba số nguyên từ bàn phím</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">m</span> <span class="c-op">=</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập số nguyên m: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-var">n</span> <span class="c-op">=</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập số nguyên n: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-var">p</span> <span class="c-op">=</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập số nguyên p: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-comment"># Xuất kết quả tổng ba số</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Tổng ba số đã nhập là:"</span><span class="c-op">,</span> <span class="c-var">m</span> <span class="c-op">+</span> <span class="c-var">n</span> <span class="c-op">+</span> <span class="c-var">p</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập số nguyên m: </span><span class="terminal-user-input">15</span>
+<span class="terminal-input-prompt">Nhập số nguyên n: </span><span class="terminal-user-input">25</span>
+<span class="terminal-input-prompt">Nhập số nguyên p: </span><span class="terminal-user-input">10</span>
+Tổng ba số đã nhập là: 50</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 11: THỰC HÀNH NHIỆM VỤ 2 -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Thực hành Nhiệm vụ 2 - SGK Trang 100</span>
+        <h2>Ví dụ 11: Chương trình nhập họ tên và tuổi học sinh</h2>
+      </div>
+    </div>
+    <div class="card-desc">Nhập họ tên (xâu ký tự), nhập tuổi (số nguyên) và đưa ra câu thông báo hoàn chỉnh theo mẫu SGK: <em>"Bạn Nguyễn Hoà Bình 15 tuổi."</em></div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 thuc_hanh_ho_ten_tuoi.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Nhập tên học sinh (kiểu xâu kí tự str)</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">ten</span> <span class="c-op">=</span> <span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập họ tên học sinh: "</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Nhập tuổi học sinh (ép sang kiểu số nguyên int)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-var">tuoi</span> <span class="c-op">=</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập tuổi: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># In ra thông báo theo mẫu</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Bạn"</span><span class="c-op">,</span> <span class="c-var">ten</span><span class="c-op">,</span> <span class="c-var">tuoi</span><span class="c-op">,</span> <span class="c-str">"tuổi."</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập họ tên học sinh: </span><span class="terminal-user-input">Nguyễn Hoà Bình</span>
+<span class="terminal-input-prompt">Nhập tuổi: </span><span class="terminal-user-input">15</span>
+Bạn Nguyễn Hoà Bình 15 tuổi.</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 6: LUYỆN TẬP VÀ VẬN DỤNG NÂNG CAO -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 6: Luyện tập và Vận dụng nâng cao (SGK Trang 100)</div>
+
+  <!-- VÍ DỤ 12: LUYỆN TẬP 1 - PHÂN BIỆT LỖI ÉP KIỂU -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Luyện tập 1 - SGK Trang 100</span>
+        <h2>Ví dụ 12: Nhận biết các lệnh ép kiểu hợp lệ và lệnh báo lỗi</h2>
+      </div>
+    </div>
+    <div class="card-desc">Thử nghiệm chuyển đổi <code>float(123.56)</code> (hợp lệ) và quan sát nguyên nhân lỗi <code>ValueError</code> khi trong xâu chứa phép tính hoặc ký tự lạ.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 luyen_tap_ep_kieu.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># LỆNH HỢP LỆ: float(123.56) vẫn là số thực 123.56</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"b) float(123.56) ="</span><span class="c-op">,</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-num">123.56</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># CÁC LỆNH GÂY LỖI ValueError: Bỏ dấu # ở dòng dưới để kiểm tra</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># print(int("12+45"))      # Lỗi: int() không nhận xâu có dấu phép toán +</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-comment"># print(float("123,5.5"))  # Lỗi: trong số thực không dùng dấu phẩy và 2 dấu chấm</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">b) float(123.56) = 123.56</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 13: VẬN DỤNG 1 - ĐỔI SỐ GIÂY NHẬP TỪ BÀN PHÍM -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Vận dụng 1 - SGK Trang 100</span>
+        <h2>Ví dụ 13: Chương trình nhập số giây ss từ bàn phím và quy đổi Ngày, Giờ, Phút, Giây</h2>
+      </div>
+    </div>
+    <div class="card-desc">Sử dụng lệnh <code>int(input())</code> để người dùng tự nhập số giây bất kỳ từ bàn phím và tính toán chia nguyên (<code>//</code>), chia dư (<code>%</code>).</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 van_dung_doi_giay.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Nhập số giây ss từ bàn phím (ép sang số nguyên)</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">ss</span> <span class="c-op">=</span> <span class="c-func">int</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập số giây cần đổi (ví dụ 684500): "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># 1 ngày = 86400 giây</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-var">ngay</span> <span class="c-op">=</span> <span class="c-var">ss</span> <span class="c-op">//</span> <span class="c-num">86400</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-var">du1</span> <span class="c-op">=</span> <span class="c-var">ss</span> <span class="c-op">%</span> <span class="c-num">86400</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-comment"># 1 giờ = 3600 giây</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-var">gio</span> <span class="c-op">=</span> <span class="c-var">du1</span> <span class="c-op">//</span> <span class="c-num">3600</span></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-var">du2</span> <span class="c-op">=</span> <span class="c-var">du1</span> <span class="c-op">%</span> <span class="c-num">3600</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-content"><span class="c-comment"># 1 phút = 60 giây</span></span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-content"><span class="c-var">phut</span> <span class="c-op">=</span> <span class="c-var">du2</span> <span class="c-op">//</span> <span class="c-num">60</span></span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-content"><span class="c-var">giay</span> <span class="c-op">=</span> <span class="c-var">du2</span> <span class="c-op">%</span> <span class="c-num">60</span></span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">16</span><span class="line-content"><span class="c-comment"># Thông báo ra màn hình kết quả quy đổi</span></span></div>
+<div class="code-line"><span class="line-num">17</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-var">ss</span><span class="c-op">,</span> <span class="c-str">"giây ="</span><span class="c-op">,</span> <span class="c-var">ngay</span><span class="c-op">,</span> <span class="c-str">"ngày"</span><span class="c-op">,</span> <span class="c-var">gio</span><span class="c-op">,</span> <span class="c-str">"giờ"</span><span class="c-op">,</span> <span class="c-var">phut</span><span class="c-op">,</span> <span class="c-str">"phút"</span><span class="c-op">,</span> <span class="c-var">giay</span><span class="c-op">,</span> <span class="c-str">"giây."</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập số giây cần đổi (ví dụ 684500): </span><span class="terminal-user-input">684500</span>
+684500 giây = 7 ngày 22 giờ 8 phút 20 giây.</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 14: VẬN DỤNG 2 - TÍNH CHU VI VÀ DIỆN TÍCH TAM GIÁC (CÔNG THỨC HERON) -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Vận dụng 2 - SGK Trang 100</span>
+        <h2>Ví dụ 14: Nhập ba cạnh tam giác, tính Chu vi và Diện tích bằng công thức Heron</h2>
+      </div>
+    </div>
+    <div class="card-desc">Chương trình nhập 3 số thực $a, b, c$ từ bàn phím, tính nửa chu vi $p = (a+b+c)/2$, chu vi và diện tích theo công thức Heron: $S = \sqrt{p(p-a)(p-b)(p-c)} = [p(p-a)(p-b)(p-c)]^{0.5}$.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 van_dung_tam_giac.py</div>
+        <span class="vscode-tag">✍️ Tự gõ code</span>
+      </div>
+      <div class="vscode-body">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Nhập độ dài ba cạnh tam giác (kiểu số thực float)</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">a</span> <span class="c-op">=</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập cạnh a: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-var">b</span> <span class="c-op">=</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập cạnh b: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-var">c</span> <span class="c-op">=</span> <span class="c-func">float</span><span class="c-op">(</span><span class="c-func">input</span><span class="c-op">(</span><span class="c-str">"Nhập cạnh c: "</span><span class="c-op">)</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-comment"># Tính nửa chu vi p và chu vi</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-var">p</span> <span class="c-op">=</span> <span class="c-op">(</span><span class="c-var">a</span> <span class="c-op">+</span> <span class="c-var">b</span> <span class="c-op">+</span> <span class="c-var">c</span><span class="c-op">)</span> <span class="c-op">/</span> <span class="c-num">2</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-var">chu_vi</span> <span class="c-op">=</span> <span class="c-var">a</span> <span class="c-op">+</span> <span class="c-var">b</span> <span class="c-op">+</span> <span class="c-var">c</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-comment"># Tính diện tích theo công thức Heron: S = căn bậc hai của [p(p-a)(p-b)(p-c)]</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"><span class="c-var">dien_tich</span> <span class="c-op">=</span> <span class="c-op">(</span><span class="c-var">p</span> <span class="c-op">*</span> <span class="c-op">(</span><span class="c-var">p</span> <span class="c-op">-</span> <span class="c-var">a</span><span class="c-op">)</span> <span class="c-op">*</span> <span class="c-op">(</span><span class="c-var">p</span> <span class="c-op">-</span> <span class="c-var">b</span><span class="c-op">)</span> <span class="c-op">*</span> <span class="c-op">(</span><span class="c-var">p</span> <span class="c-op">-</span> <span class="c-var">c</span><span class="c-op">)</span><span class="c-op">)</span> <span class="c-op">**</span> <span class="c-num">0.5</span></span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-content"><span class="c-comment"># Xuất kết quả chu vi và diện tích</span></span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Chu vi tam giác là:"</span><span class="c-op">,</span> <span class="c-var">chu_vi</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Diện tích tam giác là:"</span><span class="c-op">,</span> <span class="c-var">dien_tich</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ MÔ PHỎNG MÀN HÌNH CHẠY (OUTPUT &amp; INPUT):</div>
+      <div class="terminal-content"><span class="terminal-input-prompt">Nhập cạnh a: </span><span class="terminal-user-input">3</span>
+<span class="terminal-input-prompt">Nhập cạnh b: </span><span class="terminal-user-input">4</span>
+<span class="terminal-input-prompt">Nhập cạnh c: </span><span class="terminal-user-input">5</span>
+Chu vi tam giác là: 12.0
+Diện tích tam giác là: 6.0</div>
+    </div>
+  </div>
+
+
+  </div> <!-- KẾT THÚC TAB 1 -->
+
+  <!-- TAB 2: TRẮC NGHIỆM CỦNG CỐ -->
+  <div id="tab-content-quiz" class="tab-pane">
+    <!-- KHUNG THÔNG TIN HỌC SINH & ĐIỀU KHIỂN BÀI LÀM -->
+    <div class="quiz-control-card no-print">
+      <div class="student-info-grid">
+        <div class="input-group">
+          <label for="student-name">👤 Họ và tên học sinh:</label>
+          <input type="text" id="student-name" placeholder="Ví dụ: Nguyễn Văn An..." autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="student-class">🏫 Lớp:</label>
+          <input type="text" id="student-class" placeholder="Ví dụ: 10A1..." autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="student-date">📅 Ngày làm bài:</label>
+          <input type="text" id="student-date" readonly value="">
+        </div>
+      </div>
+
+      <div class="quiz-actions-toolbar">
+        <button class="btn btn-primary" onclick="gradeQuiz(true)">
+          <span>🔍</span> Nộp bài &amp; Chấm điểm
+        </button>
+        <button class="btn btn-export" onclick="exportPDF()">
+          <span>📄</span> Xuất file PDF bài làm
+        </button>
+        <button class="btn btn-outline" onclick="resetQuiz()">
+          <span>🔄</span> Làm lại
+        </button>
+      </div>
+
+      <!-- KẾT QUẢ ĐIỂM SỐ -->
+      <div id="quiz-result-box" class="result-box" style="display: none;">
+        <div class="result-score-tag" id="score-badge">Điểm: --/10</div>
+        <div class="result-details">
+          <h4 id="score-title">Kết quả làm bài ôn tập Buổi 16 - 17 - 18</h4>
+          <p id="score-desc">Đang tải kết quả...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- KHUNG IN ẤN TRANG TRỌNG DÀNH CHO XUẤT FILE PDF -->
+    <div class="print-only-header">
+      <div class="print-school-title">TRƯỜNG QUỐC TẾ Á CHÂU — THE ASIAN SCHOOL</div>
+      <div class="print-exam-title">BẢNG KẾT QUẢ ÔN TẬP TRẮC NGHIỆM TIN HỌC 10 (BÀI 16 – 17 – 18)</div>
+      <div class="print-sub-title">Chủ đề: Nhập môn lập trình Python (Môi trường Python, Biến &amp; Lệnh gán, Các lệnh vào ra đơn giản)</div>
+      
+      <div class="print-student-meta">
+        <div><b>Họ và tên học sinh:</b> <span id="print-student-name">....................................................</span></div>
+        <div><b>Lớp:</b> <span id="print-student-class">10A....</span></div>
+        <div><b>Ngày thực hiện:</b> <span id="print-student-date">..../..../2026</span></div>
+        <div><b>Điểm số đạt được:</b> <span id="print-student-score" style="color: #0267B1; font-weight: bold;">-- / 10 Điểm</span></div>
+      </div>
+    </div>
+
+    <!-- DANH SÁCH 20 CÂU HỎI TRẮC NGHIỆM -->
+    <div class="quiz-list">
+
+      <div class="quiz-card" id="q-card-1">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 1 (Bài 16)</span>
+          <div class="q-text">Để in dữ liệu hoặc xuất thông báo ra màn hình trong ngôn ngữ Python, ta sử dụng câu lệnh nào?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q1-A">
+            <input type="radio" name="q1" value="A" onchange="selectOption(1, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">input()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q1-B">
+            <input type="radio" name="q1" value="B" onchange="selectOption(1, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">print()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q1-C">
+            <input type="radio" name="q1" value="C" onchange="selectOption(1, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">type()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q1-D">
+            <input type="radio" name="q1" value="D" onchange="selectOption(1, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">display()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-1" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Lệnh print() trong Python có chức năng xuất dữ liệu ra màn hình (thiết bị ra chuẩn).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-2">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 2 (Bài 16)</span>
+          <div class="q-text">Tệp chương trình Python (chế độ soạn thảo) khi lưu lại trên máy tính có phần mở rộng (đuôi tệp) mặc định là gì?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q2-A">
+            <input type="radio" name="q2" value="A" onchange="selectOption(2, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">.py</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q2-B">
+            <input type="radio" name="q2" value="B" onchange="selectOption(2, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">.python</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q2-C">
+            <input type="radio" name="q2" value="C" onchange="selectOption(2, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">.pt</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q2-D">
+            <input type="radio" name="q2" value="D" onchange="selectOption(2, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">.doc</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-2" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: A</b></div>
+            <div class="feedback-explain">Tệp mã nguồn Python được lưu với phần mở rộng chuẩn là .py.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-3">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 3 (Bài 16)</span>
+          <div class="q-text">Trong môi trường gõ lệnh trực tiếp của Python, dấu nhắc lệnh xuất hiện ở đầu dòng có dạng nào?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q3-A">
+            <input type="radio" name="q3" value="A" onchange="selectOption(3, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">&lt;&lt;&lt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q3-B">
+            <input type="radio" name="q3" value="B" onchange="selectOption(3, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">---</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q3-C">
+            <input type="radio" name="q3" value="C" onchange="selectOption(3, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">...</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q3-D">
+            <input type="radio" name="q3" value="D" onchange="selectOption(3, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">&gt;&gt;&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-3" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: D</b></div>
+            <div class="feedback-explain">Dấu nhắc lệnh trong chế độ tương tác (Interactive Mode) của Python có ký hiệu là >>>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-4">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 4 (Bài 16)</span>
+          <div class="q-text">Khi thực hiện câu lệnh <code>print("Xin chào", "Việt Nam")</code>, kết quả hiển thị trên màn hình là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q4-A">
+            <input type="radio" name="q4" value="A" onchange="selectOption(4, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">Xin chào Việt Nam</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q4-B">
+            <input type="radio" name="q4" value="B" onchange="selectOption(4, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Xin chàoViệt Nam</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q4-C">
+            <input type="radio" name="q4" value="C" onchange="selectOption(4, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">"Xin chào" "Việt Nam"</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q4-D">
+            <input type="radio" name="q4" value="D" onchange="selectOption(4, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Báo lỗi cú pháp</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-4" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: A</b></div>
+            <div class="feedback-explain">Lệnh print() khi in nhiều giá trị ngăn cách bởi dấu phẩy sẽ tự động phân tách chúng bằng một dấu cách trắng.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-5">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 5 (Bài 16)</span>
+          <div class="q-text">Chương trình nào đóng vai trò chuyển dịch từng câu lệnh của mã nguồn Python sang mã máy để máy tính hiểu và thực thi?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q5-A">
+            <input type="radio" name="q5" value="A" onchange="selectOption(5, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">Trình biên dịch (Compiler)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q5-B">
+            <input type="radio" name="q5" value="B" onchange="selectOption(5, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Trình thông dịch (Interpreter)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q5-C">
+            <input type="radio" name="q5" value="C" onchange="selectOption(5, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Trình duyệt web</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q5-D">
+            <input type="radio" name="q5" value="D" onchange="selectOption(5, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Hệ điều hành</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-5" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Python là ngôn ngữ thông dịch, sử dụng trình thông dịch (Interpreter) để dịch và chạy từng dòng lệnh.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-6">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 6 (Bài 16)</span>
+          <div class="q-text">Ngôn ngữ Python có phân biệt chữ hoa và chữ thường không?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q6-A">
+            <input type="radio" name="q6" value="A" onchange="selectOption(6, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">Có, lệnh Print() và print() là khác nhau (gõ Print() sẽ bị báo lỗi)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q6-B">
+            <input type="radio" name="q6" value="B" onchange="selectOption(6, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Không, viết hoa hay viết thường đều thực thi như nhau</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q6-C">
+            <input type="radio" name="q6" value="C" onchange="selectOption(6, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Chỉ phân biệt đối với các số nguyên</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q6-D">
+            <input type="radio" name="q6" value="D" onchange="selectOption(6, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Tùy thuộc vào cài đặt của người dùng</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-6" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: A</b></div>
+            <div class="feedback-explain">Python phân biệt chính xác chữ hoa và chữ thường (case-sensitive). Tên lệnh print() phải viết thường toàn bộ.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-7">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 7 (Bài 17)</span>
+          <div class="q-text">Tên biến nào sau đây là <b>hợp lệ</b> theo đúng quy tắc đặt tên biến trong Python?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q7-A">
+            <input type="radio" name="q7" value="A" onchange="selectOption(7, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">2_diem</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q7-B">
+            <input type="radio" name="q7" value="B" onchange="selectOption(7, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">diem_toan</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q7-C">
+            <input type="radio" name="q7" value="C" onchange="selectOption(7, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">tong diem</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q7-D">
+            <input type="radio" name="q7" value="D" onchange="selectOption(7, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">class</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-7" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Tên biến hợp lệ không được bắt đầu bằng chữ số (loại A), không chứa khoảng trắng (loại C) và không trùng từ khóa (loại D).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-8">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 8 (Bài 17)</span>
+          <div class="q-text">Từ nào sau đây là <b>từ khóa (keyword)</b> trong Python và không được dùng để đặt tên biến?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q8-A">
+            <input type="radio" name="q8" value="A" onchange="selectOption(8, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">if</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q8-B">
+            <input type="radio" name="q8" value="B" onchange="selectOption(8, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">tong</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q8-C">
+            <input type="radio" name="q8" value="C" onchange="selectOption(8, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">ho_ten</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q8-D">
+            <input type="radio" name="q8" value="D" onchange="selectOption(8, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">bien_x</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-8" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: A</b></div>
+            <div class="feedback-explain">if là từ khóa của cấu trúc rẽ nhánh trong Python, do đó không được đặt trùng làm tên biến.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-9">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 9 (Bài 17)</span>
+          <div class="q-text">Cú pháp của câu lệnh gán cơ bản trong Python là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q9-A">
+            <input type="radio" name="q9" value="A" onchange="selectOption(9, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">&lt;biến&gt; == &lt;giá trị hoặc biểu thức&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q9-B">
+            <input type="radio" name="q9" value="B" onchange="selectOption(9, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">&lt;biến&gt; = &lt;giá trị hoặc biểu thức&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q9-C">
+            <input type="radio" name="q9" value="C" onchange="selectOption(9, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">&lt;giá trị hoặc biểu thức&gt; = &lt;biến&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q9-D">
+            <input type="radio" name="q9" value="D" onchange="selectOption(9, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">&lt;biến&gt; := &lt;giá trị hoặc biểu thức&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-9" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Cú pháp lệnh gán trong Python sử dụng một dấu bằng: <biến> = <giá trị hoặc biểu thức>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-10">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 10 (Bài 17)</span>
+          <div class="q-text">Sau khi thực hiện các câu lệnh sau:<br><code>x, y = 5, 10</code><br><code>x, y = y, x</code><br>Giá trị của biến <code>x</code> và <code>y</code> lần lượt là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q10-A">
+            <input type="radio" name="q10" value="A" onchange="selectOption(10, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">x = 5, y = 10</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q10-B">
+            <input type="radio" name="q10" value="B" onchange="selectOption(10, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">x = 10, y = 5</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q10-C">
+            <input type="radio" name="q10" value="C" onchange="selectOption(10, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">x = 10, y = 10</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q10-D">
+            <input type="radio" name="q10" value="D" onchange="selectOption(10, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">x = 5, y = 5</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-10" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Lệnh gán đồng thời x, y = y, x có tác dụng hoán đổi giá trị giữa hai biến x và y, kết quả x = 10 và y = 5.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-11">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 11 (Bài 17)</span>
+          <div class="q-text">Trong Python, ký hiệu nào được dùng để thực hiện phép toán lũy thừa (mũ)?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q11-A">
+            <input type="radio" name="q11" value="A" onchange="selectOption(11, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">^</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q11-B">
+            <input type="radio" name="q11" value="B" onchange="selectOption(11, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">//</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q11-C">
+            <input type="radio" name="q11" value="C" onchange="selectOption(11, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">*</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q11-D">
+            <input type="radio" name="q11" value="D" onchange="selectOption(11, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">**</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-11" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: D</b></div>
+            <div class="feedback-explain">Trong Python, phép toán lũy thừa được viết là ** (ví dụ: 2**3 = 8).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-12">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 12 (Bài 17)</span>
+          <div class="q-text">Khi thực hiện câu lệnh <code>print(17 // 5, 17 % 5)</code>, kết quả in ra màn hình là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q12-A">
+            <input type="radio" name="q12" value="A" onchange="selectOption(12, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">3 2</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q12-B">
+            <input type="radio" name="q12" value="B" onchange="selectOption(12, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">3.4 2</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q12-C">
+            <input type="radio" name="q12" value="C" onchange="selectOption(12, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">2 3</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q12-D">
+            <input type="radio" name="q12" value="D" onchange="selectOption(12, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">3 0</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-12" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: A</b></div>
+            <div class="feedback-explain">Phép // lấy thương nguyên (17 // 5 = 3), phép % lấy số dư (17 % 5 = 2).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-13">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 13 (Bài 17)</span>
+          <div class="q-text">Kết quả hiển thị trên màn hình khi thực hiện lệnh <code>print("Tin" * 3)</code> là gì?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q13-A">
+            <input type="radio" name="q13" value="A" onchange="selectOption(13, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">TinTinTin</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q13-B">
+            <input type="radio" name="q13" value="B" onchange="selectOption(13, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Tin 3</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q13-C">
+            <input type="radio" name="q13" value="C" onchange="selectOption(13, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Tin*3</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q13-D">
+            <input type="radio" name="q13" value="D" onchange="selectOption(13, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Báo lỗi kiểu dữ liệu</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-13" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: A</b></div>
+            <div class="feedback-explain">Phép nhân giữa xâu kí tự và số nguyên n là phép nhân bản (lặp lại) xâu đó n lần.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-14">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 14 (Bài 18)</span>
+          <div class="q-text">Dữ liệu nhập từ bàn phím thông qua lệnh <code>input()</code> trong Python luôn có kiểu dữ liệu mặc định là gì?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q14-A">
+            <input type="radio" name="q14" value="A" onchange="selectOption(14, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">Số nguyên (int)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q14-B">
+            <input type="radio" name="q14" value="B" onchange="selectOption(14, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">Số thực (float)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q14-C">
+            <input type="radio" name="q14" value="C" onchange="selectOption(14, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">Xâu kí tự (str)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q14-D">
+            <input type="radio" name="q14" value="D" onchange="selectOption(14, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Kiểu lôgic (bool)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-14" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: C</b></div>
+            <div class="feedback-explain">Lệnh input() luôn trả về dữ liệu kiểu xâu kí tự (str), ngay cả khi người dùng nhập vào các chữ số.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-15">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 15 (Bài 18)</span>
+          <div class="q-text">Để kiểm tra kiểu dữ liệu của một biến hoặc một biểu thức trong Python, ta sử dụng hàm nào?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q15-A">
+            <input type="radio" name="q15" value="A" onchange="selectOption(15, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">typeof()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q15-B">
+            <input type="radio" name="q15" value="B" onchange="selectOption(15, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">check()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q15-C">
+            <input type="radio" name="q15" value="C" onchange="selectOption(15, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">format()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q15-D">
+            <input type="radio" name="q15" value="D" onchange="selectOption(15, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">type()</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-15" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: D</b></div>
+            <div class="feedback-explain">Hàm type() được dùng để xác định kiểu dữ liệu của một đối tượng trong Python.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-16">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 16 (Bài 18)</span>
+          <div class="q-text">Kiểu dữ liệu lôgic (<code>bool</code>) trong Python chỉ nhận một trong hai giá trị nào sau đây?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q16-A">
+            <input type="radio" name="q16" value="A" onchange="selectOption(16, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">0 và 1</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q16-B">
+            <input type="radio" name="q16" value="B" onchange="selectOption(16, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">True và False</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q16-C">
+            <input type="radio" name="q16" value="C" onchange="selectOption(16, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">'Đúng' và 'Sai'</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q16-D">
+            <input type="radio" name="q16" value="D" onchange="selectOption(16, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">true và false (viết thường toàn bộ)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-16" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Kiểu bool trong Python gồm đúng hai giá trị True và False (chữ cái T và F bắt buộc phải viết hoa).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-17">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 17 (Bài 18)</span>
+          <div class="q-text">Để nhập vào một số nguyên <code>n</code> từ bàn phím, cú pháp chuẩn trong Python là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q17-A">
+            <input type="radio" name="q17" value="A" onchange="selectOption(17, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">n = input(int("Nhập n: "))</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q17-B">
+            <input type="radio" name="q17" value="B" onchange="selectOption(17, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">n = int(input("Nhập n: "))</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q17-C">
+            <input type="radio" name="q17" value="C" onchange="selectOption(17, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">n = int("Nhập n: ")</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q17-D">
+            <input type="radio" name="q17" value="D" onchange="selectOption(17, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">n = float(input(n))</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-17" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Lệnh input() đọc xâu kí tự từ bàn phím, sau đó hàm int() bọc bên ngoài để ép sang kiểu số nguyên.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-18">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 18 (Bài 18)</span>
+          <div class="q-text">Quan sát đoạn chương trình sau:<br><code>a = input("Nhập số thứ nhất: ")</code><br><code>b = input("Nhập số thứ hai: ")</code><br><code>print(a + b)</code><br>Nếu người dùng nhập lần lượt là <code>4</code> và <code>5</code>, kết quả in ra màn hình là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q18-A">
+            <input type="radio" name="q18" value="A" onchange="selectOption(18, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">9</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q18-B">
+            <input type="radio" name="q18" value="B" onchange="selectOption(18, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">'9'</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q18-C">
+            <input type="radio" name="q18" value="C" onchange="selectOption(18, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">45</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q18-D">
+            <input type="radio" name="q18" value="D" onchange="selectOption(18, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">Báo lỗi cú pháp</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-18" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: C</b></div>
+            <div class="feedback-explain">Vì a và b nhận giá trị từ input() nên mang kiểu xâu ('4' và '5'). Phép + là phép nối xâu: '4' + '5' = '45'.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-19">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 19 (Bài 18)</span>
+          <div class="q-text">Lệnh chuyển đổi kiểu dữ liệu nào sau đây sẽ <b>báo lỗi</b> (<code>ValueError</code>) khi thực thi?</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q19-A">
+            <input type="radio" name="q19" value="A" onchange="selectOption(19, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">int("100")</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q19-B">
+            <input type="radio" name="q19" value="B" onchange="selectOption(19, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">float("3.14")</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q19-C">
+            <input type="radio" name="q19" value="C" onchange="selectOption(19, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">int("12.5")</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q19-D">
+            <input type="radio" name="q19" value="D" onchange="selectOption(19, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">str(25)</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-19" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: C</b></div>
+            <div class="feedback-explain">Hàm int() không thể chuyển đổi trực tiếp một xâu ghi số thực (như '12.5') sang số nguyên, sẽ gây ra lỗi ValueError.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-card" id="q-card-20">
+        <div class="quiz-question-header">
+          <span class="q-badge">Câu 20 (Bài 18)</span>
+          <div class="q-text">Cho đoạn chương trình sau:<br><code>x = int("10")</code><br><code>y = float("5")</code><br><code>z = x + y</code><br><code>print(type(z))</code><br>Kết quả hiển thị trên màn hình là:</div>
+        </div>
+        <div class="quiz-options">
+          <label class="quiz-option" id="label-q20-A">
+            <input type="radio" name="q20" value="A" onchange="selectOption(20, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">&lt;class 'int'&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q20-B">
+            <input type="radio" name="q20" value="B" onchange="selectOption(20, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">&lt;class 'float'&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q20-C">
+            <input type="radio" name="q20" value="C" onchange="selectOption(20, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">&lt;class 'str'&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+          <label class="quiz-option" id="label-q20-D">
+            <input type="radio" name="q20" value="D" onchange="selectOption(20, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">&lt;class 'bool'&gt;</span>
+            <span class="opt-status-icon"></span>
+          </label>
+        </div>
+        <div class="quiz-feedback" id="feedback-20" style="display: none;">
+          <div class="feedback-inner">
+            <div class="feedback-answer"><b>Đáp án đúng: B</b></div>
+            <div class="feedback-explain">Trong Python, phép toán giữa số nguyên (int) và số thực (float) sẽ tự động trả về kết quả thuộc kiểu số thực (<class 'float'>).</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div> <!-- KẾT THÚC TAB 2 -->
+
+
+</div>
+
+<!-- CHỐNG SAO CHÉP & CHỐNG MỞ INSPECT / DEVTOOLS -->
+<script>
+
+  // DỮ LIỆU ĐÁP ÁN 20 CÂU HỎI TRẮC NGHIỆM
+  const quizKey = {"1": "B", "2": "A", "3": "D", "4": "A", "5": "B", "6": "A", "7": "B", "8": "A", "9": "B", "10": "B", "11": "D", "12": "A", "13": "A", "14": "C", "15": "D", "16": "B", "17": "B", "18": "C", "19": "C", "20": "B"};
+  let studentAnswers = {};
+  let isGraded = false;
+  let activeTab = 'practice';
+
+  // Tự động điền ngày hôm nay
+  window.addEventListener('DOMContentLoaded', () => {
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('vi-VN');
+    const dateInput = document.getElementById('student-date');
+    if (dateInput) dateInput.value = formattedDate;
+  });
+
+  // CHUYỂN TAB CHÍNH
+  function switchMainTab(tab) {
+    activeTab = tab;
+    const btnPractice = document.getElementById('tab-btn-practice');
+    const btnQuiz = document.getElementById('tab-btn-quiz');
+    const panePractice = document.getElementById('tab-content-practice');
+    const paneQuiz = document.getElementById('tab-content-quiz');
+
+    if (tab === 'practice') {
+      btnPractice.classList.add('active');
+      btnQuiz.classList.remove('active');
+      panePractice.classList.add('active');
+      paneQuiz.classList.remove('active');
+    } else {
+      btnPractice.classList.remove('active');
+      btnQuiz.classList.add('active');
+      panePractice.classList.remove('active');
+      paneQuiz.classList.add('active');
+    }
+  }
+
+  // CHỌN ĐÁP ÁN
+  function selectOption(qId, letter) {
+    studentAnswers[qId] = letter;
+
+    // Bỏ chọn các option khác trong câu
+    ['A', 'B', 'C', 'D'].forEach(opt => {
+      const label = document.getElementById(`label-q${qId}-${opt}`);
+      if (label) {
+        label.classList.remove('selected');
+      }
+    });
+
+    // Gán class selected cho option vừa chọn
+    const chosenLabel = document.getElementById(`label-q${qId}-${letter}`);
+    if (chosenLabel) {
+      chosenLabel.classList.add('selected');
+    }
+  }
+
+  // CHẤM ĐIỂM BÀI LÀM
+  function gradeQuiz(showToastMsg) {
+    let correctCount = 0;
+    const totalQuestions = 20;
+
+    for (let i = 1; i <= totalQuestions; i++) {
+      const userAns = studentAnswers[i];
+      const correctAns = quizKey[i];
+      const feedbackEl = document.getElementById(`feedback-${i}`);
+
+      // Reset style cũ
+      ['A', 'B', 'C', 'D'].forEach(opt => {
+        const label = document.getElementById(`label-q${i}-${opt}`);
+        if (label) {
+          label.classList.remove('correct-answer', 'wrong-answer');
+          const icon = label.querySelector('.opt-status-icon');
+          if (icon) icon.textContent = '';
+        }
+      });
+
+      if (feedbackEl) feedbackEl.style.display = 'block';
+
+      // Highlight đáp án đúng
+      const correctLabel = document.getElementById(`label-q${i}-${correctAns}`);
+      if (correctLabel) {
+        correctLabel.classList.add('correct-answer');
+        const icon = correctLabel.querySelector('.opt-status-icon');
+        if (icon) icon.textContent = ' ✔';
+      }
+
+      if (userAns === correctAns) {
+        correctCount++;
+      } else if (userAns) {
+        // Học sinh chọn sai
+        const wrongLabel = document.getElementById(`label-q${i}-${userAns}`);
+        if (wrongLabel) {
+          wrongLabel.classList.add('wrong-answer');
+          const icon = wrongLabel.querySelector('.opt-status-icon');
+          if (icon) icon.textContent = ' ✖';
+        }
+      }
+    }
+
+    isGraded = true;
+    const score = (correctCount * 0.5).toFixed(1);
+
+    // Cập nhật kết quả vào result-box
+    const resultBox = document.getElementById('quiz-result-box');
+    const scoreBadge = document.getElementById('score-badge');
+    const scoreTitle = document.getElementById('score-title');
+    const scoreDesc = document.getElementById('score-desc');
+
+    if (resultBox && scoreBadge && scoreTitle && scoreDesc) {
+      resultBox.style.display = 'flex';
+      scoreBadge.textContent = `${score} / 10`;
+
+      if (correctCount >= 18) {
+        scoreTitle.textContent = '🎉 Xuất sắc! Em đã nắm vững toàn bộ kiến thức Bài 18!';
+        scoreTitle.style.color = '#15803d';
+      } else if (correctCount >= 14) {
+        scoreTitle.textContent = '👍 Rất tốt! Em đã hiểu rõ các lệnh vào ra trong Python.';
+        scoreTitle.style.color = '#0267B1';
+      } else if (correctCount >= 10) {
+        scoreTitle.textContent = '⚠️ Khá! Em nên xem lại các câu sai và luyện tập thêm.';
+        scoreTitle.style.color = '#b45309';
+      } else {
+        scoreTitle.textContent = '💪 Cần cố gắng hơn! Hãy đọc lại lý thuyết SGK và làm lại nhé.';
+        scoreTitle.style.color = '#b91c1c';
+      }
+
+      scoreDesc.textContent = `Em đã trả lời đúng ${correctCount} / ${totalQuestions} câu hỏi. (${score} điểm)`;
+    }
+
+    if (showToastMsg && typeof showToast === 'function') {
+      showToast(`🎯 Đã chấm xong! Điểm số của em: ${score} / 10 (${correctCount}/20 câu đúng)`);
+    }
+
+    return { score, correctCount };
+  }
+
+  // XUẤT FILE PDF BÀI LÀM
+  function exportPDF() {
+    const studentNameInput = document.getElementById('student-name');
+    const studentName = studentNameInput ? studentNameInput.value.trim() : '';
+    
+    if (!studentName) {
+      alert('Vui lòng nhập "Họ và tên học sinh" trước khi xuất file PDF bài làm!');
+      if (studentNameInput) studentNameInput.focus();
+      return;
+    }
+
+    const studentClass = document.getElementById('student-class').value.trim() || '10A';
+    const studentDate = document.getElementById('student-date').value || new Date().toLocaleDateString('vi-VN');
+
+    // Chấm điểm trước khi xuất
+    const result = gradeQuiz(false);
+
+    // Đưa thông tin vào khung in ấn
+    document.getElementById('print-student-name').textContent = studentName;
+    document.getElementById('print-student-class').textContent = studentClass;
+    document.getElementById('print-student-date').textContent = studentDate;
+    document.getElementById('print-student-score').textContent = `${result.score} / 10 Điểm (${result.correctCount}/20 câu)`;
+
+    // Chuyển sang Tab Quiz để chắc chắn tab trắc nghiệm đang hiển thị
+    switchMainTab('quiz');
+
+    // Mở hộp thoại in / Xuất PDF của trình duyệt
+    setTimeout(() => {
+      window.print();
+    }, 200);
+  }
+
+  // LÀM LẠI BÀI TỪ ĐẦU
+  function resetQuiz() {
+    if (!confirm('Em có chắc chắn muốn làm lại từ đầu không? Toàn bộ lựa chọn sẽ được làm mới.')) {
+      return;
+    }
+
+    studentAnswers = {};
+    isGraded = false;
+
+    // Bỏ chọn tất cả radio và styles
+    for (let i = 1; i <= 20; i++) {
+      ['A', 'B', 'C', 'D'].forEach(opt => {
+        const radio = document.querySelector(`input[name="q${i}"][value="${opt}"]`);
+        if (radio) radio.checked = false;
+
+        const label = document.getElementById(`label-q${i}-${opt}`);
+        if (label) {
+          label.classList.remove('selected', 'correct-answer', 'wrong-answer');
+          const icon = label.querySelector('.opt-status-icon');
+          if (icon) icon.textContent = '';
+        }
+      });
+
+      const feedbackEl = document.getElementById(`feedback-${i}`);
+      if (feedbackEl) feedbackEl.style.display = 'none';
+    }
+
+    const resultBox = document.getElementById('quiz-result-box');
+    if (resultBox) resultBox.style.display = 'none';
+
+    if (typeof showToast === 'function') {
+      showToast('🔄 Đã làm mới toàn bộ bài làm trắc nghiệm!');
+    }
+  }
+
+</script>
+
+<script>
+  (function () {
+    // 1. Vô hiệu hóa chuột phải (Context Menu)
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    // 2. Vô hiệu hóa sao chép, cắt, bôi đen, kéo thả văn bản
+    document.addEventListener('copy', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    document.addEventListener('cut', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    document.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    document.addEventListener('selectstart', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    // 3. Chặn các phím tắt mở DevTools, Inspect Element, View Source
+    document.addEventListener('keydown', function (e) {
+      // Phím F12
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (hoặc Cmd+Option+I, Cmd+Option+J, Cmd+Option+C trên Mac)
+      const isDevTools = (e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (
+        e.key === 'I' || e.key === 'i' ||
+        e.key === 'J' || e.key === 'j' ||
+        e.key === 'C' || e.key === 'c' ||
+        e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67
+      );
+      if (isDevTools) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+U / Cmd+Option+U (Xem mã nguồn trang)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+C / Cmd+C (Copy)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.keyCode === 67)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+S / Cmd+S (Save)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.keyCode === 83)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+P / Cmd+P: Nếu ở Tab Quiz thì kích hoạt xuất PDF, ngược lại chặn
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P' || e.keyCode === 80)) {
+        if (activeTab === 'quiz') {
+          e.preventDefault();
+          exportPDF();
+          return false;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }, { capture: true });
+
+    // 4. Kích hoạt bẫy Debugger nếu cố tình mở DevTools
+    setInterval(function () {
+      (function () {
+        return false;
+      }['constructor']('debugger')['call']());
+    }, 1000);
+  })();
+</script>
+
+</body>
+</html>

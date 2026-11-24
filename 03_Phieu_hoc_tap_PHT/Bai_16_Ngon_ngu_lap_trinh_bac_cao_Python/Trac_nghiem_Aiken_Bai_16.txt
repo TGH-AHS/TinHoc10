@@ -1,0 +1,139 @@
+Câu 1. Nếu muốn in ra màn hình dòng chữ Trường Quốc tế Á Châu, câu lệnh nào sau đây là đúng cú pháp?
+A. print("Trường Quốc tế Á Châu")
+B. print(Trường Quốc tế Á Châu)
+C. Print("Trường Quốc tế Á Châu")
+D. echo "Trường Quốc tế Á Châu"
+ANSWER: A
+
+Câu 2. Nếu muốn in từ Python ra màn hình bằng cách dùng cặp dấu nháy đơn thay vì nháy kép, câu lệnh nào sau đây là hợp lệ?
+A. print('Python')
+B. print('Python")
+C. print("Python')
+D. print(/Python/)
+ANSWER: A
+
+Câu 3. Để in ra màn hình số 100 (dưới dạng một giá trị số), câu lệnh nào sau đây là đúng?
+A. print(100)
+B. Print(100)
+C. print[100]
+D. output(100)
+ANSWER: A
+
+Câu 4. Nếu muốn in lời chào Xin chào và tên Minh Anh trên cùng một dòng và cách nhau bởi một khoảng trắng, em chọn câu lệnh nào?
+A. print("Xin chào", "Minh Anh")
+B. print("Xin chào" "Minh Anh")
+C. print("Xin chào" + "Minh Anh")
+D. print("Xin chào" ; "Minh Anh")
+ANSWER: A
+
+Câu 5. Nếu muốn in kết quả của phép tính cộng 5 + 3 ra màn hình (kết quả hiển thị là số 8), câu lệnh nào sau đây là đúng?
+A. print(5 + 3)
+B. print("5 + 3")
+C. print(5 + 3 = 8)
+D. print("5 + 3 = 8")
+ANSWER: A
+
+Câu 6. Muốn in ra màn hình chính xác dòng chữ 5 + 3 (dưới dạng văn bản, không thực hiện tính toán), em chọn câu lệnh nào?
+A. print("5 + 3")
+B. print(5 + 3)
+C. print 5 + 3
+D. print(str 5 + 3)
+ANSWER: A
+
+Câu 7. Muốn in hai thông tin trên hai dòng riêng biệt: dòng 1 in Họ và tên, dòng 2 in Lớp 10, ta thực hiện như thế nào?
+A. Viết hai câu lệnh print("Họ và tên") và print("Lớp 10") trên hai dòng liên tiếp
+B. Viết chung trong một lệnh print("Họ và tên", "Lớp 10")
+C. Viết một lệnh print("Họ và tên" "Lớp 10")
+D. Python không hỗ trợ in văn bản thành hai dòng khác nhau
+ANSWER: A
+
+Câu 8. Khi muốn ghi chú giải thích cho một câu lệnh mà không muốn Python thực thi dòng ghi chú đó, em đặt ký tự nào ở đầu dòng?
+A. Dấu thăng # (ví dụ: # Đây là dòng ghi chú)
+B. Dấu hai gạch chéo //
+C. Dấu chấm phẩy ;
+D. Dấu chấm than !
+ANSWER: A
+
+Câu 9. Để in ra màn hình dòng chữ Năm học: kèm theo số 2026, câu lệnh nào sau đây là đúng cú pháp?
+A. print("Năm học:", 2026)
+B. print("Năm học:" 2026)
+C. print(Năm học:, 2026)
+D. print("Năm học:", "2026)
+ANSWER: A
+
+Câu 10. Để in ra màn hình dòng thông báo có dạng Giá tiền: 25000 đồng, câu lệnh nào sau đây là đúng cú pháp?
+A. print("Giá tiền:", 25000, "đồng")
+B. print("Giá tiền:" 25000 "đồng")
+C. print(Giá tiền: 25000 đồng)
+D. print("Giá tiền:", 25000 + "đồng")
+ANSWER: A
+
+Câu 11. Nếu vô tình gõ lệnh Print("Hello") với chữ P viết hoa, hiện tượng gì sẽ xảy ra?
+A. Báo lỗi NameError vì Python có phân biệt chữ hoa và chữ thường
+B. Vẫn in ra chữ "Hello" bình thường
+C. Tự động sửa thành chữ thường print rồi chạy tiếp
+D. Chương trình bị đóng băng không phản hồi
+ANSWER: A
+
+Câu 12. Câu lệnh print("Chào bạn) bị báo lỗi cú pháp (SyntaxError) vì nguyên nhân nào sau đây?
+A. Thiếu dấu đóng nháy kép " để kết thúc xâu ký tự trước dấu ngoặc đơn
+B. Thiếu dấu chấm phẩy kết thúc câu lệnh
+C. Từ khóa print không in được tiếng Việt có dấu
+D. Không được đặt văn bản trong dấu ngoặc đơn
+ANSWER: A
+
+Câu 13. Khi dùng lệnh print() để in nhiều giá trị cách nhau bằng dấu phẩy (ví dụ: print("A", "B", "C")), các giá trị hiển thị trên màn hình sẽ:
+A. Tự động có một khoảng trắng (dấu cách) ngăn giữa các giá trị
+B. Dính sát liền nhau không có khoảng trống
+C. Tự động ngắt mỗi giá trị xuống một dòng riêng
+D. Báo lỗi vì lệnh print chỉ được truyền một giá trị duy nhất
+ANSWER: A
+
+Câu 14. Sau khi thực hiện xong một câu lệnh print(), con trỏ màn hình của Python sẽ có hành động gì tiếp theo?
+A. Tự động chuyển xuống đầu dòng mới tiếp theo
+B. Đứng yên tại vị trí cuối cùng của dòng vừa in
+C. Xóa toàn bộ nội dung vừa in trên màn hình
+D. Tự động đóng cửa sổ làm việc lại
+ANSWER: A
+
+Câu 15. Khi thực hành viết chương trình trên trình soạn thảo Python trực tuyến (như pythononline.net), để thực thi mã nguồn và xem kết quả in ra màn hình, em nhấn vào nút lệnh nào?
+A. Nút Run
+B. Nút Clear
+C. Nút Share
+D. Nút Settings
+ANSWER: A
+
+Câu 16. Ưu điểm chính của chế độ soạn thảo tệp chương trình (Script mode) so với chế độ gõ lệnh trực tiếp là gì?
+A. Cho phép viết nhiều câu lệnh, lưu lại thành tệp để chỉnh sửa và chạy lại nhiều lần
+B. Chạy lệnh nhanh hơn và không bao giờ báo lỗi
+C. Không cần cài đặt phần mềm Python vào máy tính
+D. Tự động viết mã lệnh thay cho người lập trình
+ANSWER: A
+
+Câu 17. Khi viết một chương trình Python gồm nhiều câu lệnh, thao tác hoặc tổ hợp phím tắt nào sau đây dùng để lưu tệp mã nguồn vào máy tính?
+A. Chọn File -> Save (hoặc nhấn tổ hợp phím Ctrl + S / Cmd + S)
+B. Nhấn phím F1 trên bàn phím
+C. Nhấn tổ hợp phím Alt + F4
+D. Nhấn phím Esc trên bàn phím
+ANSWER: A
+
+Câu 18. Tệp chứa mã nguồn chương trình Python sau khi lưu vào máy tính có phần mở rộng (đuôi tệp) mặc định là:
+A. .py
+B. .python
+C. .pt
+D. .doc
+ANSWER: A
+
+Câu 19. Để máy tính có thể hiểu và thực thi các câu lệnh viết bằng ngôn ngữ bậc cao Python, hệ thống cần sử dụng thành phần nào?
+A. Chương trình dịch (trình thông dịch - Interpreter)
+B. Phần mềm bảng tính Microsoft Excel
+C. Thiết bị lưu trữ ngoài USB
+D. Trình duyệt web Google Chrome
+ANSWER: A
+
+Câu 20. Nhà khoa học máy tính người Hà Lan đã sáng lập và phát hành ngôn ngữ lập trình Python lần đầu tiên vào năm 1991 là ai?
+A. Guido van Rossum
+B. Tim Berners-Lee
+C. Bill Gates
+D. James Gosling
+ANSWER: A

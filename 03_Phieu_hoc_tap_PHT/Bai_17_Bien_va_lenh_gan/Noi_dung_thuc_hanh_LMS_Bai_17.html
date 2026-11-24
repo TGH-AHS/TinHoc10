@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Liệu Thực Hành Python Online - Bài 17: Biến và Lệnh Gán | Asian School</title>
+  <style>
+    :root {
+      --primary: #0267B1;
+      --primary-dark: #014c83;
+      --secondary: #0f172a;
+      --accent: #f59e0b;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --code-bg: #1e1e1e;
+      --terminal-bg: #0b1120;
+      --border: #e2e8f0;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, * {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* BANNER HEADER */
+    .banner {
+      background: linear-gradient(135deg, #0267B1 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 28px 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::after {
+      content: "🐍";
+      position: absolute;
+      right: 20px;
+      bottom: -15px;
+      font-size: 110px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .banner h3 {
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .banner h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .banner p {
+      font-size: 14.5px;
+      color: #e2e8f0;
+      max-width: 750px;
+    }
+
+    /* ACTION BAR */
+    .action-bar {
+      background-color: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .action-bar-text {
+      font-size: 14px;
+      color: #92400e;
+      font-weight: 500;
+    }
+
+    .action-bar-text strong {
+      color: #78350f;
+    }
+
+    .btn-ide {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--primary);
+      color: #ffffff !important;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(2, 103, 177, 0.3);
+    }
+
+    .btn-ide:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* SECTION HEADING */
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin: 32px 0 16px 0;
+      padding-left: 12px;
+      border-left: 4px solid var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* CARD VÍ DỤ */
+    .example-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .example-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .card-title-group h2 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .card-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    /* VS CODE EDITOR WINDOW */
+    .vscode-window {
+      background-color: var(--code-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .vscode-header {
+      background-color: #252526;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      border-bottom: 1px solid #333333;
+    }
+
+    .vscode-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background-color: #ff5f56; }
+    .dot-yellow { background-color: #ffbd2e; }
+    .dot-green { background-color: #27c93f; }
+
+    .vscode-tab {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #1e1e1e;
+      color: #cccccc;
+      font-size: 12.5px;
+      padding: 4px 14px;
+      border-top: 1.5px solid var(--primary);
+      border-radius: 4px 4px 0 0;
+      font-family: Consolas, 'Courier New', monospace;
+    }
+
+    .vscode-body {
+      padding: 14px 16px;
+      font-family: 'Consolas', 'Fira Code', 'Monaco', monospace;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #d4d4d4;
+      overflow-x: auto;
+    }
+
+    .code-line {
+      display: flex;
+      margin: 2px 0;
+    }
+
+    .line-num {
+      width: 28px;
+      color: #858585;
+      text-align: right;
+      margin-right: 16px;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .line-content {
+      white-space: pre;
+    }
+
+    /* SYNTAX COLORS */
+    .c-keyword { color: #c586c0; font-weight: bold; }
+    .c-func { color: #dcdcaa; font-weight: bold; }
+    .c-str { color: #ce9178; }
+    .c-num { color: #b5cea8; }
+    .c-comment { color: #6a9955; font-style: italic; }
+    .c-op { color: #ffd700; }
+    .c-var { color: #9cdcfe; }
+
+    /* TERMINAL OUTPUT */
+    .terminal-box {
+      background-color: var(--terminal-bg);
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+    }
+
+    .terminal-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .terminal-content {
+      color: #4ade80;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    /* NOTE CALLOUT */
+    .note-box {
+      background-color: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 10px 14px;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #334155;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .note-box strong {
+      color: var(--primary);
+    }
+
+    /* TOAST COPIED */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #10b981;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- BANNER HEADER -->
+  <div class="banner">
+    <h3>Trường Quốc Tế Á Châu — Tin Học 10</h3>
+    <h1>HỌC LIỆU THỰC HÀNH MÃ NGUỒN: BÀI 17 — BIẾN VÀ LỆNH GÁN</h1>
+    <p>Tổng hợp toàn bộ các ví dụ mẫu, câu hỏi thực hành và bài tập vận dụng trong Sách giáo khoa (Kết nối tri thức) — Đã chuyển hóa sang định dạng tệp mã nguồn chuẩn để học sinh thực hành trực tiếp trên IDE trực tuyến <strong>pythononline.net</strong>.</p>
+  </div>
+
+  <!-- ACTION BAR HƯỚNG DẪN -->
+  <div class="action-bar">
+    <div class="action-bar-text">
+      ✍️ <strong>Yêu cầu thực hành:</strong> Học sinh tự gõ lại từng dòng lệnh vào khung soạn thảo của <a href="https://pythononline.net" target="_blank" style="color: #0267B1; font-weight: bold; text-decoration: underline;">pythononline.net ↗</a> để rèn luyện kỹ năng lập trình và ghi nhớ cú pháp Python, sau đó bấm nút <span style="background: #16a34a; color: #fff; padding: 1px 7px; border-radius: 3px; font-weight: bold;">Run</span> để kiểm tra kết quả.
+    </div>
+    <a href="https://pythononline.net" target="_blank" class="btn-ide">
+      🌐 Mở IDE pythononline.net ↗
+    </a>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 1: KHÁI NIỆM BIẾN VÀ LỆNH GÁN CƠ BẢN -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 1: Khái niệm Biến và Lệnh gán cơ bản (SGK Trang 91)</div>
+
+  <!-- VÍ DỤ 1: HOẠT ĐỘNG 1 -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Hoạt động 1 - SGK Trang 91</span>
+        <h2>Ví dụ 1: Khởi tạo biến số và thực hiện phép tính đơn giản</h2>
+      </div>
+    </div>
+    <div class="card-desc">Gán giá trị số nguyên <code>5</code> cho biến <code>n</code>, sau đó in giá trị của biến và kết quả của biểu thức <code>n + 3</code> ra màn hình.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_1.py</div>
+      </div>
+      <div class="vscode-body" id="code1">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Khởi tạo biến n và gán giá trị 5</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">n</span> <span class="c-op">=</span> <span class="c-num">5</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Xuất giá trị của n và biểu thức n + 3 ra màn hình</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Giá trị của biến n là:"</span><span class="c-op">,</span> <span class="c-var">n</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Kết quả của n + 3 là:"</span><span class="c-op">,</span> <span class="c-var">n</span> <span class="c-op">+</span> <span class="c-num">3</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Giá trị của biến n là: 5
+Kết quả của n + 3 là: 8</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 2: BIẾN SỐ VÀ BIẾN XÂU -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 1 - SGK Trang 91</span>
+        <h2>Ví dụ 2: Khởi tạo biến kiểu số nguyên và kiểu xâu ký tự</h2>
+      </div>
+    </div>
+    <div class="card-desc">Biến trong Python tự động nhận kiểu dữ liệu theo giá trị được gán: số nguyên hoặc xâu ký tự (đặt trong dấu nháy kép).</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_2.py</div>
+      </div>
+      <div class="vscode-body" id="code2">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Biến x nhận giá trị kiểu số nguyên</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">x</span> <span class="c-op">=</span> <span class="c-num">5</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến x (số nguyên):"</span><span class="c-op">,</span> <span class="c-var">x</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># Biến y nhận giá trị kiểu xâu kí tự</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-var">y</span> <span class="c-op">=</span> <span class="c-str">"Tin học 10"</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến y (xâu kí tự):"</span><span class="c-op">,</span> <span class="c-var">y</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Biến x (số nguyên): 5
+Biến y (xâu kí tự): Tin học 10</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 2: CÁC CÁCH GÁN BIẾN NÂNG CAO -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 2: Các kỹ thuật gán biến nâng cao (SGK Trang 92)</div>
+
+  <!-- VÍ DỤ 3: GÁN BIỂU THỨC -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 1 - SGK Trang 92</span>
+        <h2>Ví dụ 3: Gán giá trị liên hoàn &amp; Gán kết quả biểu thức lũy thừa</h2>
+      </div>
+    </div>
+    <div class="card-desc">Cú pháp gán liên hoàn <code>x = y = 1</code> và gán kết quả biểu thức <code>z = (x + y)**x</code>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_3.py</div>
+      </div>
+      <div class="vscode-body" id="code3">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Có thể gán đồng thời nhiều biến với một giá trị</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">x</span> <span class="c-op">=</span> <span class="c-var">y</span> <span class="c-op">=</span> <span class="c-num">1</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Cập nhật giá trị biến x bằng x = y + 1 (x sẽ nhận giá trị 2)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-var">x</span> <span class="c-op">=</span> <span class="c-var">y</span> <span class="c-op">+</span> <span class="c-num">1</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># Gán kết quả phép tính luỹ thừa (x + y)**x cho biến z: (2 + 1)**2 = 3**2 = 9</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-var">z</span> <span class="c-op">=</span> <span class="c-op">(</span><span class="c-var">x</span> <span class="c-op">+</span> <span class="c-var">y</span><span class="c-op">)</span> <span class="c-op">**</span> <span class="c-var">x</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Giá trị của biến z là:"</span><span class="c-op">,</span> <span class="c-var">z</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Giá trị của biến z là: 9</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 4: PHÉP CHIA SỐ THỰC -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 1 - SGK Trang 92</span>
+        <h2>Ví dụ 4: Gán kết quả phép chia số thực</h2>
+      </div>
+    </div>
+    <div class="card-desc">Trong Python, phép chia bằng toán tử <code>/</code> luôn trả về kết quả kiểu số thực (float).</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_4.py</div>
+      </div>
+      <div class="vscode-body" id="code4">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-var">x</span> <span class="c-op">=</span> <span class="c-num">5</span>   <span class="c-comment"># x là biến kiểu số nguyên, giá trị bằng 5</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">y</span> <span class="c-op">=</span> <span class="c-num">2</span>   <span class="c-comment"># y là biến kiểu số nguyên, giá trị bằng 2</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-var">z</span> <span class="c-op">=</span> <span class="c-var">x</span> <span class="c-op">/</span> <span class="c-var">y</span> <span class="c-comment"># z là biến kiểu số thực, giá trị bằng 2.5</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Kết quả z = x / y ="</span><span class="c-op">,</span> <span class="c-var">z</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Kết quả z = x / y = 2.5</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 5: TÊN BIẾN GỢI NHỚ VÀ IN KẾT HỢP XÂU -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 1 - SGK Trang 92</span>
+        <h2>Ví dụ 5: Đặt tên biến gợi nhớ và in kết hợp xâu ký tự</h2>
+      </div>
+    </div>
+    <div class="card-desc">Nên đặt tên biến ngắn gọn, có ý nghĩa và sử dụng lệnh <code>print()</code> để in lời chào kết hợp biến.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_5.py</div>
+      </div>
+      <div class="vscode-body" id="code5">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Đặt tên biến thường đặt sao cho dễ nhớ và có ý nghĩa</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">ten</span> <span class="c-op">=</span> <span class="c-str">"Hoài Nam"</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Xin chào"</span><span class="c-op">,</span> <span class="c-var">ten</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Xin chào Hoài Nam</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 6: GÁN NHIỀU GIÁ TRỊ ĐỒNG THỜI -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 1 - SGK Trang 92</span>
+        <h2>Ví dụ 6: Gán nhiều biến đồng thời trên cùng một dòng</h2>
+      </div>
+    </div>
+    <div class="card-desc">Cú pháp gán đồng thời: <code>&lt;var1&gt;, &lt;var2&gt;, ... = &lt;gt1&gt;, &lt;gt2&gt;, ...</code> giúp mã nguồn ngắn gọn và trực quan.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_6.py</div>
+      </div>
+      <div class="vscode-body" id="code6">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Có thể gán nhiều giá trị đồng thời cho nhiều biến</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">x</span><span class="c-op">,</span> <span class="c-var">y</span><span class="c-op">,</span> <span class="c-var">z</span> <span class="c-op">=</span> <span class="c-num">10</span><span class="c-op">,</span> <span class="c-num">5</span><span class="c-op">,</span> <span class="c-num">1</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Tính tổng x + y + z</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Tổng x + y + z ="</span><span class="c-op">,</span> <span class="c-var">x</span> <span class="c-op">+</span> <span class="c-var">y</span> <span class="c-op">+</span> <span class="c-var">z</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Tổng x + y + z = 16</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 3: CÁC PHÉP TOÁN TRÊN SỐ VÀ XÂU KÝ TỰ -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 3: Các phép toán trên kiểu số và xâu ký tự (SGK Trang 92 - 93)</div>
+
+  <!-- VÍ DỤ 7: CÁC PHÉP TOÁN SỐ HỌC -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 92</span>
+        <h2>Ví dụ 7: Thực hành các phép toán số học (Chia nguyên //, Chia dư %, Lũy thừa **)</h2>
+      </div>
+    </div>
+    <div class="card-desc">Khám phá các toán tử đặc trưng trong Python: chia lấy phần nguyên <code>//</code>, chia lấy phần dư <code>%</code> và lũy thừa <code>**</code>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_7.py</div>
+      </div>
+      <div class="vscode-body" id="code7">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-var">a</span><span class="c-op">,</span> <span class="c-var">b</span> <span class="c-op">=</span> <span class="c-num">10</span><span class="c-op">,</span> <span class="c-num">3</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-comment"># 1. Biểu thức phối hợp cộng, trừ, nhân, luỹ thừa: (10+3)^2 + (10-3)*10</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"(a+b)**2 + (a-b)*10 ="</span><span class="c-op">,</span> <span class="c-op">(</span><span class="c-var">a</span><span class="c-op">+</span><span class="c-var">b</span><span class="c-op">)</span><span class="c-op">**</span><span class="c-num">2</span> <span class="c-op">+</span> <span class="c-op">(</span><span class="c-var">a</span><span class="c-op">-</span><span class="c-var">b</span><span class="c-op">)</span><span class="c-op">*</span><span class="c-num">10</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-comment"># 2. Phép toán // (thương nguyên) và % (số dư): (10//3)*3 + 10%3 = 3*3 + 1 = 10</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"(a//b)*b + a%b ="</span><span class="c-op">,</span> <span class="c-op">(</span><span class="c-var">a</span><span class="c-op">//</span><span class="c-var">b</span><span class="c-op">)</span><span class="c-op">*</span><span class="c-var">b</span> <span class="c-op">+</span> <span class="c-var">a</span><span class="c-op">%</span><span class="c-var">b</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-comment"># 3. Phép chia thực trả về số thực float: 3 / 2 = 1.5</span></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-var">c</span> <span class="c-op">=</span> <span class="c-var">b</span> <span class="c-op">/</span> <span class="c-num">2</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Giá trị của c = b / 2 là:"</span><span class="c-op">,</span> <span class="c-var">c</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">(a+b)**2 + (a-b)*10 = 239
+(a//b)*b + a%b = 10
+Giá trị của c = b / 2 là: 1.5</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 8: QUY TẮC LŨY THỪA -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 92 - 93</span>
+        <h2>Ví dụ 8: Quy tắc tính lũy thừa từ phải sang trái</h2>
+      </div>
+    </div>
+    <div class="card-desc">Khác với các phép toán cộng trừ nhân chia tính từ trái sang phải, phép lũy thừa <code>**</code> trong Python được tính từ <strong>phải sang trái</strong>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_8.py</div>
+      </div>
+      <div class="vscode-body" id="code8">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Phép toán 4**2**3 được tính từ phải sang trái: 4**(2**3) = 4**8 = 65536</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"4**2**3 ="</span><span class="c-op">,</span> <span class="c-num">4</span><span class="c-op">**</span><span class="c-num">2</span><span class="c-op">**</span><span class="c-num">3</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Nếu có ngoặc tròn (4**2)**3: tính trong ngoặc trước: 16**3 = 4096</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"(4**2)**3 ="</span><span class="c-op">,</span> <span class="c-op">(</span><span class="c-num">4</span><span class="c-op">**</span><span class="c-num">2</span><span class="c-op">)</span><span class="c-op">**</span><span class="c-num">3</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">4**2**3 = 65536
+(4**2)**3 = 4096</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 9: THAO TÁC TRÊN XÂU KÝ TỰ -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 2 - SGK Trang 93</span>
+        <h2>Ví dụ 9: Các phép toán trên kiểu xâu ký tự (Nối xâu + và Lặp xâu *)</h2>
+      </div>
+    </div>
+    <div class="card-desc">Toán tử <code>+</code> dùng để ghép nối hai xâu; toán tử <code>*</code> dùng để nhân bản (lặp lại) xâu với một số nguyên.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_9.py</div>
+      </div>
+      <div class="vscode-body" id="code9">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-var">s1</span> <span class="c-op">=</span> <span class="c-str">"Hà Nội"</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">s2</span> <span class="c-op">=</span> <span class="c-str">"Việt Nam"</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># Phép nối hai xâu kí tự</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Nối xâu (s1 + s2):"</span><span class="c-op">,</span> <span class="c-var">s1</span> <span class="c-op">+</span> <span class="c-var">s2</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># Phép lặp xâu kí tự 5 lần</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Lặp xâu (\"123\" * 5):"</span><span class="c-op">,</span> <span class="c-str">"123"</span> <span class="c-op">*</span> <span class="c-num">5</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-comment"># Phép nhân xâu với số 0 cho kết quả xâu rỗng: ''</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Nhân với 0 (s1 * 0):"</span><span class="c-op">,</span> <span class="c-var">s1</span> <span class="c-op">*</span> <span class="c-num">0</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Nối xâu (s1 + s2): Hà NộiViệt Nam
+Lặp xâu ("123" * 5): 123123123123123
+Nhân với 0 (s1 * 0): </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 4: TỪ KHÓA & QUY TẮC ĐẶT TÊN BIẾN -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 4: Từ khóa và Quy tắc đặt tên biến (SGK Trang 93)</div>
+
+  <!-- VÍ DỤ 10: TỪ KHÓA & LỖI CÚ PHÁP -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Mục 3 - SGK Trang 93</span>
+        <h2>Ví dụ 10: Nhận biết Từ khóa (Keywords) &amp; Lỗi SyntaxError khi đặt tên biến trùng từ khóa</h2>
+      </div>
+    </div>
+    <div class="card-desc">Trong Python, từ khóa là các từ ngữ được dành riêng cho cấu trúc ngữ pháp của ngôn ngữ. Tuyệt đối <strong>không được đặt tên biến trùng với từ khóa</strong>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 vi_du_10.py</div>
+      </div>
+      <div class="vscode-body" id="code10">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># TÊN BIẾN HỢP LỆ (Bắt đầu bằng chữ cái hoặc dấu gạch dưới _)</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">_if</span> <span class="c-op">=</span> <span class="c-num">12</span>            <span class="c-comment"># Hợp lệ (vì có dấu gạch dưới ở đầu)</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-var">ten_hoc_sinh</span> <span class="c-op">=</span> <span class="c-str">"An"</span> <span class="c-comment"># Hợp lệ</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Biến _if hợp lệ có giá trị:"</span><span class="c-op">,</span> <span class="c-var">_if</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-comment"># THỬ NGHIỆM GÂY LỖI: Bỏ dấu # ở dòng dưới để quan sát lỗi SyntaxError:</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-comment"># if = 12                # Lỗi: if là từ khoá</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-comment"># with = "Độ rộng"       # Lỗi: with là từ khoá</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-comment"># 12abc = 5              # Lỗi: Tên biến không được bắt đầu bằng chữ số</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Biến _if hợp lệ có giá trị: 12</div>
+    </div>
+    <div class="note-box">
+      ⚠️ <strong>Bảng từ khóa Python 3.x cần nhớ (SGK Trang 93):</strong><br>
+      <code>False</code>, <code>None</code>, <code>True</code>, <code>and</code>, <code>as</code>, <code>assert</code>, <code>break</code>, <code>class</code>, <code>continue</code>, <code>def</code>, <code>del</code>, <code>elif</code>, <code>else</code>, <code>except</code>, <code>finally</code>, <code>for</code>, <code>from</code>, <code>global</code>, <code>if</code>, <code>import</code>, <code>in</code>, <code>is</code>, <code>lambda</code>, <code>nonlocal</code>, <code>not</code>, <code>or</code>, <code>pass</code>, <code>raise</code>, <code>return</code>, <code>try</code>, <code>while</code>, <code>with</code>, <code>yield</code>.
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 5: BÀI TẬP THỰC HÀNH TRỌNG TÂM SGK -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 5: Bài tập Thực hành SGK (Trang 93 - 94)</div>
+
+  <!-- VÍ DỤ 11: NHIỆM VỤ 1 -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Thực hành Nhiệm vụ 1 - SGK Trang 93-94</span>
+        <h2>Ví dụ 11: Tính giá trị các biểu thức số học phức tạp</h2>
+      </div>
+    </div>
+    <div class="card-desc">Thực hiện tính toán 4 câu a, b, c, d trong SGK và in toàn bộ kết quả ra màn hình.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 thuc_hanh_nhiem_vu_1.py</div>
+      </div>
+      <div class="vscode-body" id="code11">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># a) Tính: (1 + 2 + 3 + ... + 10)^3</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">ket_qua_a</span> <span class="c-op">=</span> <span class="c-op">(</span><span class="c-num">1</span><span class="c-op">+</span><span class="c-num">2</span><span class="c-op">+</span><span class="c-num">3</span><span class="c-op">+</span><span class="c-num">4</span><span class="c-op">+</span><span class="c-num">5</span><span class="c-op">+</span><span class="c-num">6</span><span class="c-op">+</span><span class="c-num">7</span><span class="c-op">+</span><span class="c-num">8</span><span class="c-op">+</span><span class="c-num">9</span><span class="c-op">+</span><span class="c-num">10</span><span class="c-op">)</span> <span class="c-op">**</span> <span class="c-num">3</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Câu a) (1+2+...+10)**3 ="</span><span class="c-op">,</span> <span class="c-var">ket_qua_a</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># b) Tính: 1/2 + 1/3 + 1/4 + 1/5</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-var">ket_qua_b</span> <span class="c-op">=</span> <span class="c-num">1</span><span class="c-op">/</span><span class="c-num">2</span> <span class="c-op">+</span> <span class="c-num">1</span><span class="c-op">/</span><span class="c-num">3</span> <span class="c-op">+</span> <span class="c-num">1</span><span class="c-op">/</span><span class="c-num">4</span> <span class="c-op">+</span> <span class="c-num">1</span><span class="c-op">/</span><span class="c-num">5</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Câu b) 1/2 + 1/3 + 1/4 + 1/5 ="</span><span class="c-op">,</span> <span class="c-var">ket_qua_b</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-comment"># c) Gán x = 2, y = 5 rồi tính (x + y)(x^2 + y^2 - 1)</span></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-var">x</span><span class="c-op">,</span> <span class="c-var">y</span> <span class="c-op">=</span> <span class="c-num">2</span><span class="c-op">,</span> <span class="c-num">5</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"><span class="c-var">ket_qua_c</span> <span class="c-op">=</span> <span class="c-op">(</span><span class="c-var">x</span> <span class="c-op">+</span> <span class="c-var">y</span><span class="c-op">)</span> <span class="c-op">*</span> <span class="c-op">(</span><span class="c-var">x</span><span class="c-op">**</span><span class="c-num">2</span> <span class="c-op">+</span> <span class="c-var">y</span><span class="c-op">**</span><span class="c-num">2</span> <span class="c-op">-</span> <span class="c-num">1</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Câu c) (x+y)*(x**2+y**2-1) ="</span><span class="c-op">,</span> <span class="c-var">ket_qua_c</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-content"><span class="c-comment"># d) Gán a = 2, b = 3, c = 4 rồi tính (a + b + c)(a + b - c)</span></span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-content"><span class="c-var">a</span><span class="c-op">,</span> <span class="c-var">b</span><span class="c-op">,</span> <span class="c-var">c</span> <span class="c-op">=</span> <span class="c-num">2</span><span class="c-op">,</span> <span class="c-num">3</span><span class="c-op">,</span> <span class="c-num">4</span></span></div>
+<div class="code-line"><span class="line-num">16</span><span class="line-content"><span class="c-var">ket_qua_d</span> <span class="c-op">=</span> <span class="c-op">(</span><span class="c-var">a</span> <span class="c-op">+</span> <span class="c-var">b</span> <span class="c-op">+</span> <span class="c-var">c</span><span class="c-op">)</span> <span class="c-op">*</span> <span class="c-op">(</span><span class="c-var">a</span> <span class="c-op">+</span> <span class="c-var">b</span> <span class="c-op">-</span> <span class="c-var">c</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">17</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Câu d) (a+b+c)*(a+b-c) ="</span><span class="c-op">,</span> <span class="c-var">ket_qua_d</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Câu a) (1+2+...+10)**3 = 166375
+Câu b) 1/2 + 1/3 + 1/4 + 1/5 = 1.2833333333333332
+Câu c) (x+y)*(x**2+y**2-1) = 196
+Câu d) (a+b+c)*(a+b-c) = 9</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 12: NHIỆM VỤ 2 (CHU VI VÀ DIỆN TÍCH HÌNH TRÒN) -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Thực hành Nhiệm vụ 2 - SGK Trang 94</span>
+        <h2>Ví dụ 12: Viết chương trình tính Chu vi và Diện tích hình tròn</h2>
+      </div>
+    </div>
+    <div class="card-desc">Chương trình hoàn chỉnh tính và in kết quả Chu vi, Diện tích hình tròn với bán kính <code>R = 4.5</code> và hằng số số pi <code>pi = 3.14</code>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 hinh_tron.py</div>
+      </div>
+      <div class="vscode-body" id="code12">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Khai báo bán kính và số pi</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">R</span> <span class="c-op">=</span> <span class="c-num">4.5</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-var">pi</span> <span class="c-op">=</span> <span class="c-num">3.14</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># Tính và in chu vi hình tròn: 2 * R * pi</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Chu vi hình tròn là:"</span><span class="c-op">,</span> <span class="c-num">2</span> <span class="c-op">*</span> <span class="c-var">R</span> <span class="c-op">*</span> <span class="c-var">pi</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-comment"># Tính và in diện tích hình tròn: pi * R * R</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Diện tích hình tròn là:"</span><span class="c-op">,</span> <span class="c-var">pi</span> <span class="c-op">*</span> <span class="c-var">R</span> <span class="c-op">*</span> <span class="c-var">R</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Chu vi hình tròn là: 28.26
+Diện tích hình tròn là: 63.585</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PHẦN 6: BÀI TẬP LUYỆN TẬP & VẬN DỤNG -->
+  <!-- ========================================================================= -->
+  <div class="section-title">Phần 6: Luyện tập và Vận dụng nâng cao (SGK Trang 94)</div>
+
+  <!-- VÍ DỤ 13: LUYỆN TẬP NỐT NHẠC -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Luyện tập 2 - SGK Trang 94</span>
+        <h2>Ví dụ 13: Ghép giai điệu nốt nhạc bằng toán tử xâu ký tự</h2>
+      </div>
+    </div>
+    <div class="card-desc">Sử dụng toán tử <code>*</code> (lặp xâu) kết hợp toán tử <code>+</code> (nối xâu) để tạo chuỗi âm thanh giai điệu.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 luyen_tap_am_nhac.py</div>
+      </div>
+      <div class="vscode-body" id="code13">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Lặp đoạn "đồ rê mi " 3 lần và nối với đoạn "pha son la si đô " lặp 2 lần</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"đồ rê mi "</span> <span class="c-op">*</span> <span class="c-num">3</span> <span class="c-op">+</span> <span class="c-str">"pha son la si đô "</span> <span class="c-op">*</span> <span class="c-num">2</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">đồ rê mi đồ rê mi đồ rê mi pha son la si đô pha son la si đô </div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 14: VẬN DỤNG ĐỔI GIÂY -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Vận dụng 1 - SGK Trang 94</span>
+        <h2>Ví dụ 14: Chương trình quy đổi tổng số giây sang Ngày, Giờ, Phút, Giây</h2>
+      </div>
+    </div>
+    <div class="card-desc">Ứng dụng phép chia lấy phần nguyên <code>//</code> và chia lấy dư <code>%</code> để giải bài toán đổi thời gian: <code>ss = 684500</code> giây.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 doi_thoi_gian.py</div>
+      </div>
+      <div class="vscode-body" id="code14">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Tổng số giây cho trước</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">ss</span> <span class="c-op">=</span> <span class="c-num">684500</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"><span class="c-comment"># 1 ngày = 86400 giây</span></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-var">ngay</span> <span class="c-op">=</span> <span class="c-var">ss</span> <span class="c-op">//</span> <span class="c-num">86400</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-var">du1</span> <span class="c-op">=</span> <span class="c-var">ss</span> <span class="c-op">%</span> <span class="c-num">86400</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">8</span><span class="line-content"><span class="c-comment"># 1 giờ = 3600 giây</span></span></div>
+<div class="code-line"><span class="line-num">9</span><span class="line-content"><span class="c-var">gio</span> <span class="c-op">=</span> <span class="c-var">du1</span> <span class="c-op">//</span> <span class="c-num">3600</span></span></div>
+<div class="code-line"><span class="line-num">10</span><span class="line-content"><span class="c-var">du2</span> <span class="c-op">=</span> <span class="c-var">du1</span> <span class="c-op">%</span> <span class="c-num">3600</span></span></div>
+<div class="code-line"><span class="line-num">11</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">12</span><span class="line-content"><span class="c-comment"># 1 phút = 60 giây</span></span></div>
+<div class="code-line"><span class="line-num">13</span><span class="line-content"><span class="c-var">phut</span> <span class="c-op">=</span> <span class="c-var">du2</span> <span class="c-op">//</span> <span class="c-num">60</span></span></div>
+<div class="code-line"><span class="line-num">14</span><span class="line-content"><span class="c-var">giay</span> <span class="c-op">=</span> <span class="c-var">du2</span> <span class="c-op">%</span> <span class="c-num">60</span></span></div>
+<div class="code-line"><span class="line-num">15</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">16</span><span class="line-content"><span class="c-comment"># In kết quả định dạng theo yêu cầu SGK</span></span></div>
+<div class="code-line"><span class="line-num">17</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-var">ss</span><span class="c-op">,</span> <span class="c-str">"giây ="</span><span class="c-op">,</span> <span class="c-var">ngay</span><span class="c-op">,</span> <span class="c-str">"ngày"</span><span class="c-op">,</span> <span class="c-var">gio</span><span class="c-op">,</span> <span class="c-str">"giờ"</span><span class="c-op">,</span> <span class="c-var">phut</span><span class="c-op">,</span> <span class="c-str">"phút"</span><span class="c-op">,</span> <span class="c-var">giay</span><span class="c-op">,</span> <span class="c-str">"giây."</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">684500 giây = 7 ngày 22 giờ 8 phút 20 giây.</div>
+    </div>
+  </div>
+
+  <!-- VÍ DỤ 15: HOÁN ĐỔI GIÁ TRỊ 2 BIẾN -->
+  <div class="example-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <span class="card-badge">Vận dụng 2 - SGK Trang 94</span>
+        <h2>Ví dụ 15: Kỹ thuật hoán đổi giá trị 2 biến cực nhanh trong Python</h2>
+      </div>
+    </div>
+    <div class="card-desc">Trong các ngôn ngữ lập trình khác cần dùng biến trung gian <code>temp</code>, nhưng trong Python ta có thể hoán đổi trực tiếp: <code>x, y = y, x</code>.</div>
+    
+    <div class="vscode-window">
+      <div class="vscode-header">
+        <div class="vscode-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+        <div class="vscode-tab">🐍 hoan_doi_bien.py</div>
+      </div>
+      <div class="vscode-body" id="code15">
+<div class="code-line"><span class="line-num">1</span><span class="line-content"><span class="c-comment"># Khởi tạo giá trị ban đầu cho hai biến x và y</span></span></div>
+<div class="code-line"><span class="line-num">2</span><span class="line-content"><span class="c-var">x</span><span class="c-op">,</span> <span class="c-var">y</span> <span class="c-op">=</span> <span class="c-num">10</span><span class="c-op">,</span> <span class="c-num">7</span></span></div>
+<div class="code-line"><span class="line-num">3</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Trước khi hoán đổi: x ="</span><span class="c-op">,</span> <span class="c-var">x</span><span class="c-op">,</span> <span class="c-str">"| y ="</span><span class="c-op">,</span> <span class="c-var">y</span><span class="c-op">)</span></span></div>
+<div class="code-line"><span class="line-num">4</span><span class="line-content"></span></div>
+<div class="code-line"><span class="line-num">5</span><span class="line-content"><span class="c-comment"># Lệnh gán đồng thời hoán đổi giá trị: x nhận giá trị của y, y nhận giá trị của x</span></span></div>
+<div class="code-line"><span class="line-num">6</span><span class="line-content"><span class="c-var">x</span><span class="c-op">,</span> <span class="c-var">y</span> <span class="c-op">=</span> <span class="c-var">y</span><span class="c-op">,</span> <span class="c-var">x</span></span></div>
+<div class="code-line"><span class="line-num">7</span><span class="line-content"><span class="c-func">print</span><span class="c-op">(</span><span class="c-str">"Sau khi hoán đổi:   x ="</span><span class="c-op">,</span> <span class="c-var">x</span><span class="c-op">,</span> <span class="c-str">"| y ="</span><span class="c-op">,</span> <span class="c-var">y</span><span class="c-op">)</span></span></div>
+      </div>
+    </div>
+
+    <div class="terminal-box">
+      <div class="terminal-header">&gt;_ KẾT QUẢ XUẤT RA MÀN HÌNH (OUTPUT):</div>
+      <div class="terminal-content">Trước khi hoán đổi: x = 10 | y = 7
+Sau khi hoán đổi:   x = 7 | y = 10</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CHỐNG SAO CHÉP & CHỐNG MỞ INSPECT / DEVTOOLS -->
+<script>
+  (function () {
+    // 1. Vô hiệu hóa chuột phải (Context Menu)
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    // 2. Vô hiệu hóa sao chép, cắt, bôi đen, kéo thả văn bản
+    document.addEventListener('copy', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    document.addEventListener('cut', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    document.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    document.addEventListener('selectstart', function (e) {
+      e.preventDefault();
+      return false;
+    }, { capture: true });
+
+    // 3. Chặn các phím tắt mở DevTools, Inspect Element, View Source
+    document.addEventListener('keydown', function (e) {
+      // Phím F12
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (hoặc Cmd+Option+I, Cmd+Option+J, Cmd+Option+C trên Mac)
+      const isDevTools = (e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (
+        e.key === 'I' || e.key === 'i' ||
+        e.key === 'J' || e.key === 'j' ||
+        e.key === 'C' || e.key === 'c' ||
+        e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67
+      );
+      if (isDevTools) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+U / Cmd+Option+U (Xem mã nguồn trang)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+C / Cmd+C (Copy)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.keyCode === 67)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+S / Cmd+S (Save)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.keyCode === 83)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Tổ hợp Ctrl+P / Cmd+P (In ấn)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P' || e.keyCode === 80)) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }, { capture: true });
+
+    // 4. Kích hoạt bẫy Debugger nếu mở DevTools
+    setInterval(function () {
+      (function () {
+        return false;
+      }['constructor']('debugger')['call']());
+    }, 1000);
+  })();
+</script>
+</body>
+</html>

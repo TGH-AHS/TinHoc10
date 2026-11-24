@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Liệu Tin Học 10 — Trường Quốc Tế Á Châu</title>
+  <style>
+    :root {
+      --primary: #0267B1;
+      --primary-dark: #014c83;
+      --secondary: #0f172a;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 30px 16px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* HEADER BANNER */
+    .banner {
+      background: linear-gradient(135deg, #0267B1 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 36px 30px;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 20px -5px rgba(2, 103, 177, 0.25);
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::after {
+      content: "🐍";
+      position: absolute;
+      right: 25px;
+      bottom: -15px;
+      font-size: 110px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .banner h3 {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .banner h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .banner p {
+      font-size: 15px;
+      color: #e2e8f0;
+      max-width: 800px;
+    }
+
+    /* SECTION TITLE */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 32px 0 18px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      color: var(--secondary);
+      font-weight: 800;
+    }
+
+    .section-badge {
+      background: #e0f2fe;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+
+    /* LESSON CARDS GRID */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .lesson-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-3px);
+      border-color: #93c5fd;
+      box-shadow: 0 10px 15px -3px rgba(2, 103, 177, 0.12);
+    }
+
+    .card-top {
+      margin-bottom: 18px;
+    }
+
+    .lesson-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .tag-bai16 { background: #dbeafe; color: #1e40af; }
+    .tag-bai17 { background: #fef3c7; color: #92400e; }
+    .tag-bai18 { background: #dcfce7; color: #166534; }
+
+    .lesson-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .lesson-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background-color: #f1f5f9;
+      color: var(--secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 30px 0 10px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- BANNER HEADER -->
+  <div class="banner">
+    <h3>Trường Quốc Tế Á Châu — The Asian School</h3>
+    <h1>CỔNG HỌC LIỆU SỐ TIN HỌC 10</h1>
+    <p>Chuyên đề Nhập môn lập trình Python (Bài 16 – 17 – 18): Học liệu thực hành mã nguồn trực tuyến, tương tác code editor, hệ thống trắc nghiệm củng cố và hồ sơ giảng dạy chuẩn hóa.</p>
+  </div>
+
+  <!-- PHÂN HỆ CÁC BÀI HỌC -->
+  <div class="section-header">
+    <h2>Chủ đề: Nhập môn lập trình Python</h2>
+    <span class="section-badge">SGK Kết nối tri thức</span>
+  </div>
+
+  <div class="lesson-grid">
+
+    <!-- BÀI 16 -->
+    <div class="lesson-card">
+      <div class="card-top">
+        <span class="lesson-tag tag-bai16">Bài 16 • 2 Tiết</span>
+        <h3>Ngôn ngữ lập trình bậc cao và Python</h3>
+        <p>Môi trường lập trình Python, chế độ tương tác (<code>&gt;&gt;&gt;</code>) và chế độ soạn thảo tệp script (.py), lệnh xuất dữ liệu <code>print()</code>.</p>
+      </div>
+      <div class="btn-group">
+        <a href="03_Phieu_hoc_tap_PHT/Bai_16_Ngon_ngu_lap_trinh_bac_cao_Python/Noi_dung_nhung_LMS_Bai_16_Tiet_2.html" class="btn btn-primary">
+          <span>💻</span> Mở Học liệu thực hành LMS
+        </a>
+        <a href="03_Phieu_hoc_tap_PHT/Bai_16_Ngon_ngu_lap_trinh_bac_cao_Python/Trac_nghiem_Tin10_Bai16_20cau.pdf" class="btn btn-secondary" target="_blank">
+          <span>📄</span> Xem Đề trắc nghiệm (PDF)
+        </a>
+        <a href="03_Phieu_hoc_tap_PHT/Bai_16_Ngon_ngu_lap_trinh_bac_cao_Python/Trac_nghiem_Aiken_Bai_16.txt" class="btn btn-secondary" download>
+          <span>📋</span> Tải File Aiken LMS
+        </a>
+      </div>
+    </div>
+
+    <!-- BÀI 17 -->
+    <div class="lesson-card">
+      <div class="card-top">
+        <span class="lesson-tag tag-bai17">Bài 17 • 2 Tiết</span>
+        <h3>Biến và lệnh gán</h3>
+        <p>Quy tắc đặt tên biến, từ khóa (keyword), lệnh gán cơ bản và gán đồng thời, các phép toán số học (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code>, <code>**</code>) và phép toán trên xâu.</p>
+      </div>
+      <div class="btn-group">
+        <a href="03_Phieu_hoc_tap_PHT/Bai_17_Bien_va_lenh_gan/Noi_dung_thuc_hanh_LMS_Bai_17.html" class="btn btn-primary">
+          <span>💻</span> Mở Học liệu thực hành (VS Code)
+        </a>
+        <a href="01_Ke_hoach_bai_day_KHBD/Ky_1/Bai_17_(2_tiet).docx" class="btn btn-secondary">
+          <span>📑</span> Tải Giáo án KHBD 5512
+        </a>
+      </div>
+    </div>
+
+    <!-- BÀI 18 -->
+    <div class="lesson-card">
+      <div class="card-top">
+        <span class="lesson-tag tag-bai18">Bài 18 • 2 Tiết</span>
+        <h3>Các lệnh vào ra đơn giản</h3>
+        <p>Lệnh <code>input()</code>, lệnh <code>print()</code>, hàm <code>type()</code>, kiểu lôgic <code>bool</code>, các hàm ép kiểu <code>int()</code>, <code>float()</code>, <code>str()</code> và kỹ thuật lồng lệnh.</p>
+      </div>
+      <div class="btn-group">
+        <a href="03_Phieu_hoc_tap_PHT/Bai_18_Cac_lenh_vao_ra_don_gian/Noi_dung_thuc_hanh_LMS_Bai_18.html" class="btn btn-primary">
+          <span>⚡</span> Mở Thực hành &amp; Trắc nghiệm (Có xuất PDF)
+        </a>
+        <a href="03_Phieu_hoc_tap_PHT/Bai_18_Cac_lenh_vao_ra_don_gian/Trac_nghiem_Tin10_Bai18_20cau.pdf" class="btn btn-secondary" target="_blank">
+          <span>📄</span> Xem Đề ôn tập 16-17-18 (PDF)
+        </a>
+        <a href="03_Phieu_hoc_tap_PHT/Bai_18_Cac_lenh_vao_ra_don_gian/Trac_nghiem_Aiken_Bai_18.txt" class="btn btn-secondary" download>
+          <span>📋</span> Tải File Aiken LMS
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PHÂN HỆ HỒ SƠ SƯ PHẠM VÀ PHIẾU HỌC TẬP -->
+  <div class="section-header">
+    <h2>Hồ sơ sư phạm &amp; Phiếu học tập liên bài</h2>
+    <span class="section-badge">CV 5512 / NLS</span>
+  </div>
+
+  <div class="lesson-grid">
+    <div class="lesson-card">
+      <div class="card-top">
+        <span class="lesson-tag tag-bai16">Kế hoạch bài dạy (KHBD)</span>
+        <h3>Giáo án 5512 (Bài 16 – 17 – 18)</h3>
+        <p>Soạn thảo theo đúng chuẩn Phụ lục 4 Công văn 5512/BGDĐT, tích hợp khung Năng lực số (Thông tư 02/2025/TT-BGDĐT).</p>
+      </div>
+      <div class="btn-group">
+        <a href="01_Ke_hoach_bai_day_KHBD/Ky_1/Bai_16_(2_tiet).docx" class="btn btn-secondary">📑 KHBD Bài 16 (.docx)</a>
+        <a href="01_Ke_hoach_bai_day_KHBD/Ky_1/Bai_17_(2_tiet).docx" class="btn btn-secondary">📑 KHBD Bài 17 (.docx)</a>
+        <a href="01_Ke_hoach_bai_day_KHBD/Ky_1/Bai_18_(2_tiet).docx" class="btn btn-secondary">📑 KHBD Bài 18 (.docx)</a>
+      </div>
+    </div>
+
+    <div class="lesson-card">
+      <div class="card-top">
+        <span class="lesson-tag tag-bai18">Phiếu học tập liên bài</span>
+        <h3>PHT Nhập môn Python (16 – 18)</h3>
+        <p>Phiếu học tập tổng hợp định dạng Word chuẩn nhận diện Á Châu, phục vụ thảo luận nhóm và đánh giá quá trình.</p>
+      </div>
+      <div class="btn-group">
+        <a href="03_Phieu_hoc_tap_PHT/PHT_Tin10_Bai16_17_18_Nhap_mon_lap_trinh_Python.docx" class="btn btn-primary">
+          <span>📥</span> Tải Phiếu học tập liên bài (.docx)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 – 2027 Trường Quốc Tế Á Châu (The Asian School) — Tổ Tin Học THPT</p>
+    <p style="margin-top: 4px; font-size: 12px; color: #94a3b8;">Xây dựng và đóng gói tự động bởi hệ thống trợ lý học vụ AI.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

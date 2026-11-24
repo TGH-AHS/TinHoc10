@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Nội dung nhúng LMS - Tin học 10 Bài 16 Tiết 2 (Chuẩn Asian School)</title>
+</head>
+<body style="font-family: sans-serif; background: #e2e8f0; padding: 20px;">
+
+  <!-- ========================================================================== -->
+  <!-- VÍ DỤ 1: THẺ HỌC SINH (In nhiều dòng liên tiếp) -->
+  <!-- ========================================================================== -->
+  <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc; color: #1e293b; padding: 22px; max-width: 820px; margin: 0 auto 28px auto; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    
+    <!-- Tiêu đề xanh Á Châu -->
+    <div style="background-color: #0f172a; border-left: 5px solid #0267B1; padding: 14px 20px; margin-bottom: 20px; border-radius: 0 4px 4px 0;">
+      <h2 style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 0 0 4px 0;">Ví dụ 1: Viết chương trình in nhiều dòng liên tiếp</h2>
+      <p style="color: #94a3b8; font-size: 13px; margin: 0;">Mục tiêu: Làm quen với việc chạy một kịch bản gồm nhiều câu lệnh trên IDE trực tuyến</p>
+    </div>
+
+    <!-- Hướng dẫn thực hành có link click trực tiếp -->
+    <div style="background-color: #fffbeb; border: 1.5px solid #f59e0b; padding: 14px 18px; margin-bottom: 18px; border-radius: 6px;">
+      <div style="color: #b45309; font-size: 12.5px; font-weight: bold; margin-bottom: 6px;">✏️ Yêu cầu thực hành cho học sinh:</div>
+      <p style="color: #451a03; font-size: 14px; line-height: 1.55; margin: 0 0 6px 0;">
+        Em hãy mở trang web <a href="https://pythononline.net" target="_blank" style="color: #0267B1; font-weight: bold; text-decoration: underline;">pythononline.net ↗</a>, nhập toàn bộ 8 dòng lệnh ở khung bên dưới, thay thông tin cá nhân của mình vào và bấm nút <strong style="color: #15803d; background: #dcfce7; padding: 1px 6px; border-radius: 3px;">Run</strong> để xuất chiếc thẻ học sinh ra màn hình.
+      </p>
+      <div style="color: #b45309; font-size: 12px; font-style: italic;">💡 Mẹo: Nhớ kiểm tra đủ cặp dấu ngoặc kép <code>""</code> và dấu phẩy <code>,</code> giữa các giá trị để không bị báo lỗi cú pháp.</div>
+    </div>
+
+    <!-- Khung code Dark theme chuẩn VS Code -->
+    <div style="background-color: #1e1e1e; border: 1px solid #334155; border-radius: 6px; margin-bottom: 18px; padding: 16px;">
+      <div style="font-family: 'Consolas', 'Fira Code', 'Monaco', monospace; font-size: 14px; line-height: 1.45; color: #d4d4d4;">
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">1</span><span style="color: #6a9955; font-style: italic;"># CHƯƠNG TRÌNH IN THẺ HỌC SINH</span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">2</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"------------------------------------------"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">3</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"|         TRƯỜNG QUỐC TẾ Á CHÂU          |"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">4</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"|           THẺ HỌC SINH LỚP 10          |"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">5</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"------------------------------------------"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">6</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Họ và tên:"</span>, <span style="color: #ce9178;">"Nguyễn Văn An"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">7</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Lớp:"</span>, <span style="color: #ce9178;">"10A1"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">8</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Môn học:"</span>, <span style="color: #ce9178;">"Tin học 10 - Python"</span><span style="color: #ffd700;">)</span></span></div>
+      </div>
+    </div>
+
+    <!-- Ghi nhớ & Kết quả Terminal -->
+    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 18px;">
+      <h3 style="color: #0f172a; font-size: 14px; font-weight: bold; margin: 0 0 8px 0;">📑 Điểm cần ghi nhớ:</h3>
+      <ul style="font-size: 13.5px; color: #334155; line-height: 1.6; margin: 0 0 14px 0; padding-left: 20px;">
+        <li>Các câu lệnh trong chương trình Python sẽ được thực thi <strong>từ trên xuống dưới</strong> theo thứ tự từng dòng một.</li>
+        <li>Mỗi lệnh <code>print()</code> sau khi in xong sẽ tự động xuống dòng mới.</li>
+      </ul>
+      <div style="background-color: #0f172a; border-radius: 6px; padding: 14px 18px;">
+        <div style="color: #94a3b8; font-size: 11px; font-weight: bold; margin-bottom: 6px;">&gt;_ KẾT QUẢ HIỂN THỊ TRÊN MÀN HÌNH:</div>
+        <div style="font-family: 'Consolas', 'Courier New', monospace; color: #4ade80; font-size: 13.5px; line-height: 1.6;">
+          ------------------------------------------<br />
+          |         TRƯỜNG QUỐC TẾ Á CHÂU          |<br />
+          |           THẺ HỌC SINH LỚP 10          |<br />
+          ------------------------------------------<br />
+          Họ và tên: Nguyễn Văn An<br />
+          Lớp: 10A1<br />
+          Môn học: Tin học 10 - Python
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- VÍ DỤ 2: HÓA ĐƠN TRÀ SỮA (In nhiều giá trị ngăn cách bằng dấu phẩy) -->
+  <!-- ========================================================================== -->
+  <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc; color: #1e293b; padding: 22px; max-width: 820px; margin: 0 auto 28px auto; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    
+    <div style="background-color: #0f172a; border-left: 5px solid #0267B1; padding: 14px 20px; margin-bottom: 20px; border-radius: 0 4px 4px 0;">
+      <h2 style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 0 0 4px 0;">Ví dụ 2: Hóa đơn quán Trà sữa (In nhiều giá trị)</h2>
+      <p style="color: #94a3b8; font-size: 13px; margin: 0;">Mục tiêu: Sử dụng dấu phẩy để in đồng thời xâu ký tự và số trên cùng một dòng</p>
+    </div>
+
+    <div style="background-color: #fffbeb; border: 1.5px solid #f59e0b; padding: 14px 18px; margin-bottom: 18px; border-radius: 6px;">
+      <div style="color: #b45309; font-size: 12.5px; font-weight: bold; margin-bottom: 6px;">✏️ Yêu cầu thực hành cho học sinh:</div>
+      <p style="color: #451a03; font-size: 14px; line-height: 1.55; margin: 0;">
+        Vào <a href="https://pythononline.net" target="_blank" style="color: #0267B1; font-weight: bold; text-decoration: underline;">pythononline.net ↗</a>, gõ đoạn mã tính tiền hóa đơn bên dưới và quan sát kết quả Python tự động chèn khoảng trắng giữa các giá trị.
+      </p>
+    </div>
+
+    <div style="background-color: #1e1e1e; border: 1px solid #334155; border-radius: 6px; margin-bottom: 18px; padding: 16px;">
+      <div style="font-family: 'Consolas', 'Fira Code', 'Monaco', monospace; font-size: 14px; line-height: 1.45; color: #d4d4d4;">
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">1</span><span style="color: #6a9955; font-style: italic;"># HÓA ĐƠN QUÁN TRÀ SỮA</span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">2</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Món đặt:"</span>, <span style="color: #ce9178;">"Trà sữa Trân châu đường đen"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">3</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Đơn giá:"</span>, <span style="color: #b5cea8;">35000</span>, <span style="color: #ce9178;">"đồng"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">4</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Số lượng:"</span>, <span style="color: #b5cea8;">3</span>, <span style="color: #ce9178;">"ly"</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">5</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Tổng cộng phải trả:"</span>, <span style="color: #b5cea8;">35000</span> * <span style="color: #b5cea8;">3</span>, <span style="color: #ce9178;">"đồng"</span><span style="color: #ffd700;">)</span></span></div>
+      </div>
+    </div>
+
+    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 18px;">
+      <h3 style="color: #0f172a; font-size: 14px; font-weight: bold; margin: 0 0 8px 0;">📑 Điểm cần ghi nhớ:</h3>
+      <ul style="font-size: 13.5px; color: #334155; line-height: 1.6; margin: 0 0 14px 0; padding-left: 20px;">
+        <li>Trong lệnh <code>print()</code>, các giá trị ngăn cách bởi dấu phẩy <code>,</code> sẽ được in ra cách nhau đúng <strong>một khoảng trắng (dấu cách)</strong>.</li>
+        <li>Python tự tính biểu thức <code>35000 * 3</code> thành <code>105000</code> rồi mới in ra.</li>
+      </ul>
+      <div style="background-color: #0f172a; border-radius: 6px; padding: 14px 18px;">
+        <div style="color: #94a3b8; font-size: 11px; font-weight: bold; margin-bottom: 6px;">&gt;_ KẾT QUẢ HIỂN THỊ TRÊN MÀN HÌNH:</div>
+        <div style="font-family: 'Consolas', 'Courier New', monospace; color: #4ade80; font-size: 13.5px; line-height: 1.6;">
+          Món đặt: Trà sữa Trân châu đường đen<br />
+          Đơn giá: 35000 đồng<br />
+          Số lượng: 3 ly<br />
+          Tổng cộng phải trả: 105000 đồng
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- VÍ DỤ 3: TÍNH CHU VI VÀ DIỆN TÍCH SÂN BÓNG -->
+  <!-- ========================================================================== -->
+  <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc; color: #1e293b; padding: 22px; max-width: 820px; margin: 0 auto 28px auto; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    
+    <div style="background-color: #0f172a; border-left: 5px solid #0267B1; padding: 14px 20px; margin-bottom: 20px; border-radius: 0 4px 4px 0;">
+      <h2 style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 0 0 4px 0;">Ví dụ 3: Tính toán biểu thức Số nguyên & Số thực</h2>
+      <p style="color: #94a3b8; font-size: 13px; margin: 0;">Mục tiêu: Phân biệt kết quả số nguyên và số thực (phép chia / luôn cho số thực float)</p>
+    </div>
+
+    <div style="background-color: #fffbeb; border: 1.5px solid #f59e0b; padding: 14px 18px; margin-bottom: 18px; border-radius: 6px;">
+      <div style="color: #b45309; font-size: 12.5px; font-weight: bold; margin-bottom: 6px;">✏️ Yêu cầu thực hành cho học sinh:</div>
+      <p style="color: #451a03; font-size: 14px; line-height: 1.55; margin: 0;">
+        Một sân bóng trường Á Châu có chiều dài 15m, chiều rộng 8.5m. Hãy chạy đoạn lệnh trên <a href="https://pythononline.net" target="_blank" style="color: #0267B1; font-weight: bold; text-decoration: underline;">pythononline.net ↗</a> để tính chu vi, diện tích và nửa chu vi.
+      </p>
+    </div>
+
+    <div style="background-color: #1e1e1e; border: 1px solid #334155; border-radius: 6px; margin-bottom: 18px; padding: 16px;">
+      <div style="font-family: 'Consolas', 'Fira Code', 'Monaco', monospace; font-size: 14px; line-height: 1.45; color: #d4d4d4;">
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">1</span><span style="color: #6a9955; font-style: italic;"># TÍNH CHU VI VÀ DIỆN TÍCH SÂN BÓNG</span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">2</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Chu vi sân bóng (m):"</span>, <span style="color: #ffd700;">(</span><span style="color: #b5cea8;">15</span> + <span style="color: #b5cea8;">8.5</span><span style="color: #ffd700;">)</span> * <span style="color: #b5cea8;">2</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">3</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Diện tích sân bóng (m2):"</span>, <span style="color: #b5cea8;">15</span> * <span style="color: #b5cea8;">8.5</span><span style="color: #ffd700;">)</span></span></div>
+        <div style="margin: 0; padding: 2px 0;"><span style="display: inline-block; width: 28px; color: #858585; text-align: right; margin-right: 16px;">4</span><span><span style="color: #dcdcaa; font-weight: bold;">print</span><span style="color: #ffd700;">(</span><span style="color: #ce9178;">"Nửa chu vi sân bóng (m):"</span>, <span style="color: #b5cea8;">47</span> / <span style="color: #b5cea8;">2</span><span style="color: #ffd700;">)</span></span></div>
+      </div>
+    </div>
+
+    <div style="background-color: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 6px; padding: 18px;">
+      <h3 style="color: #0f172a; font-size: 14px; font-weight: bold; margin: 0 0 8px 0;">📑 Điểm cần ghi nhớ:</h3>
+      <ul style="font-size: 13.5px; color: #334155; line-height: 1.6; margin: 0 0 14px 0; padding-left: 20px;">
+        <li>Thứ tự ưu tiên phép toán: Trong ngoặc tròn <code>()</code> trước, nhân chia <code>* /</code> trước, cộng trừ <code>+ -</code> sau.</li>
+        <li>Phép chia <code>/</code> trong Python <strong>luôn luôn trả về số thực (float)</strong> có phần thập phân (ví dụ <code>47 / 2 = 23.5</code>).</li>
+      </ul>
+      <div style="background-color: #0f172a; border-radius: 6px; padding: 14px 18px;">
+        <div style="color: #94a3b8; font-size: 11px; font-weight: bold; margin-bottom: 6px;">&gt;_ KẾT QUẢ HIỂN THỊ TRÊN MÀN HÌNH:</div>
+        <div style="font-family: 'Consolas', 'Courier New', monospace; color: #4ade80; font-size: 13.5px; line-height: 1.6;">
+          Chu vi sân bóng (m): 47.0<br />
+          Diện tích sân bóng (m2): 127.5<br />
+          Nửa chu vi sân bóng (m): 23.5
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- VÍ DỤ 4: NHẬN DIỆN VÀ KHẮC PHỤC CÁC LỖI THƯỜNG GẶP -->
+  <!-- ========================================================================== -->
+  <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc; color: #1e293b; padding: 22px; max-width: 820px; margin: 0 auto 28px auto; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    
+    <div style="background-color: #0f172a; border-left: 5px solid #ef4444; padding: 14px 20px; margin-bottom: 20px; border-radius: 0 4px 4px 0;">
+      <h2 style="color: #ffffff; font-size: 18px; font-weight: bold; margin: 0 0 4px 0;">Ví dụ 4: Nhận diện & Sửa lỗi cú pháp thường gặp (Debugging)</h2>
+      <p style="color: #94a3b8; font-size: 13px; margin: 0;">Mục tiêu: Rèn luyện kỹ năng đọc thông báo lỗi của Python để tự sửa sai</p>
+    </div>
+
+    <div style="background-color: #fffbeb; border: 1.5px solid #f59e0b; padding: 14px 18px; margin-bottom: 18px; border-radius: 6px;">
+      <div style="color: #b45309; font-size: 12.5px; font-weight: bold; margin-bottom: 6px;">✏️ Yêu cầu thực hành cho học sinh:</div>
+      <p style="color: #451a03; font-size: 14px; line-height: 1.55; margin: 0;">
+        Hãy gõ thử các câu lệnh bị lỗi dưới đây vào <a href="https://pythononline.net" target="_blank" style="color: #0267B1; font-weight: bold; text-decoration: underline;">pythononline.net ↗</a>, đọc kỹ thông báo màu đỏ của trình thông dịch, sau đó sửa lại cho đúng.
+      </p>
+    </div>
+
+    <!-- Bảng so sánh lệnh sai vs lệnh đúng -->
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 13.5px;">
+      <thead>
+        <tr style="background-color: #0f172a; color: #ffffff;">
+          <th style="padding: 10px 14px; text-align: left; width: 45%;">❌ Lệnh viết SAI</th>
+          <th style="padding: 10px 14px; text-align: left; width: 55%;">✅ Lỗi & Cách sửa ĐÚNG</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid #cbd5e1; background: #ffffff;">
+          <td style="padding: 10px 14px; font-family: monospace; color: #b91c1c; font-weight: bold;">Print("Xin chào")</td>
+          <td style="padding: 10px 14px; color: #334155;">
+            Báo lỗi <code>NameError</code> do viết hoa chữ <code>P</code>.<br />
+            ➔ Sửa đúng: <code style="color: #15803d; font-weight: bold;">print("Xin chào")</code>
+          </td>
+        </tr>
+        <tr style="border-bottom: 1px solid #cbd5e1; background: #f8fafc;">
+          <td style="padding: 10px 14px; font-family: monospace; color: #b91c1c; font-weight: bold;">print("Xin chào)</td>
+          <td style="padding: 10px 14px; color: #334155;">
+            Báo lỗi <code>SyntaxError</code> do thiếu dấu ngoặc kép đóng.<br />
+            ➔ Sửa đúng: <code style="color: #15803d; font-weight: bold;">print("Xin chào")</code>
+          </td>
+        </tr>
+        <tr style="background: #ffffff;">
+          <td style="padding: 10px 14px; font-family: monospace; color: #b91c1c; font-weight: bold;">print("Điểm:" 10)</td>
+          <td style="padding: 10px 14px; color: #334155;">
+            Báo lỗi <code>SyntaxError</code> do thiếu dấu phẩy ngăn cách.<br />
+            ➔ Sửa đúng: <code style="color: #15803d; font-weight: bold;">print("Điểm:", 10)</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
