@@ -2825,7 +2825,40 @@ Diện tích tam giác là: 6.0</div>
   });
 
 
-  // 1. Vô hiệu hóa chuột phải (Context Menu)
+  // ==========================================
+  // HÀM HIỂN THỊ THÔNG BÁO TOAST
+  // ==========================================
+  function showToast(message) {
+    let toast = document.getElementById('toast-notification');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toast-notification';
+      toast.style.cssText = 'position: fixed; bottom: 24px; right: 24px; background: #1e293b; color: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); font-family: inherit; font-size: 14px; font-weight: 500; z-index: 99999; display: flex; align-items: center; gap: 10px; transition: opacity 0.3s ease, transform 0.3s ease; opacity: 0; transform: translateY(20px); pointer-events: none; border-left: 4px solid #0267B1;';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+    if (window._toastTimeout) clearTimeout(window._toastTimeout);
+    window._toastTimeout = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(20px)';
+    }, 3500);
+  }
+
+  // Gắn các hàm điều khiển vào window để đảm bảo gọi từ onclick HTML luôn hoạt động
+  window.switchMainTab = switchMainTab;
+  window.selectOption = selectOption;
+  window.validateQuizCompletion = validateQuizCompletion;
+  window.gradeQuiz = gradeQuiz;
+  window.exportPDF = exportPDF;
+  window.resetQuiz = resetQuiz;
+  window.scrollToTop = scrollToTop;
+  window.showToast = showToast;
+
+  // 3. TÍNH NĂNG BẢO VỆ CHỐNG SAO CHÉP & CHỐNG MỞ INSPECT
+  (function () {
+    // 1. Vô hiệu hóa chuột phải (Context Menu)
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
       return false;
