@@ -400,7 +400,7 @@
 
     .student-info-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1.2fr;
+      grid-template-columns: 3fr 1.2fr;
       gap: 16px;
       margin-bottom: 18px;
     }
@@ -1074,10 +1074,7 @@
           <label for="student-class">🏫 Lớp:</label>
           <input type="text" id="student-class" placeholder="Ví dụ: 10A1..." autocomplete="off">
         </div>
-        <div class="input-group">
-          <label for="student-date">📅 Ngày làm bài:</label>
-          <input type="text" id="student-date" readonly value="">
-        </div>
+
       </div>
 
       <div class="quiz-actions-toolbar">
@@ -2730,7 +2727,7 @@ Diện tích tam giác là: 6.0</div>
 
     const studentName = document.getElementById('student-name').value.trim();
     const studentClass = document.getElementById('student-class').value.trim();
-    const studentDate = document.getElementById('student-date').value || new Date().toLocaleDateString('vi-VN');
+    const studentDate = new Date().toLocaleDateString('vi-VN');
 
     // Điền thông tin vào khung in ấn
     document.getElementById('print-student-name').textContent = studentName;
